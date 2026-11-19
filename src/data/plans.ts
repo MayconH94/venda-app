@@ -1,0 +1,61 @@
+import { SubscriptionPlan } from '../types';
+import { BRAND } from '../config/brand';
+
+export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
+  {
+    id: 'solo',
+    name: 'Essencial',
+    tagline: 'Para começar a organizar seus atendimentos e sair do papel.',
+    priceMonthly: 39.9,
+    priceAnnualMonthly: 31.9,
+    features: [
+      'Agendamento online 24h direto pelo celular',
+      'Link exclusivo para bio do Instagram e WhatsApp',
+      'Catálogo de serviços com fotos, preços e duração',
+      'Controle de expediente da semana e bloqueio de folgas',
+      'Agenda do dia com cancelamento e toque para WhatsApp',
+      'Lembrete de retorno para manutenção de cílios',
+      'Suporte pelo WhatsApp em horário comercial',
+    ],
+    ctaText: 'Começar com Essencial',
+  },
+  {
+    id: 'pro',
+    name: 'Pro White-Label',
+    tagline: 'O mais vendido: Seu logotipo, suas cores, configuração inicial e zero faltas.',
+    popular: true,
+    priceMonthly: 69.9,
+    priceAnnualMonthly: 55.9,
+    whiteLabelHighlighted: true,
+    features: [
+      '★ SEU LOGOTIPO E IDENTIDADE VISUAL (White-Label)',
+      `★ Link exclusivo: ${BRAND.domain}/seustudio`,
+      '★ Configuração inicial feita por nós (serviços, fotos e horários)',
+      '★ Sinal Pix Anti-Falta (cobre sinal antecipado e zere no-shows)',
+      '★ Lembretes automáticos no WhatsApp 24h e 2h antes',
+      '★ Alerta inteligente de manutenção de cílios (15 a 21 dias)',
+      '★ Intervalo automático de higienização de pinças e maca',
+      'Agendamentos 100% ilimitados',
+      'Ficha de anamnese ocular digital e histórico da cliente',
+      'Suporte VIP prioritário via WhatsApp',
+    ],
+    ctaText: 'Garantir Plano Pro com Meu Logo',
+  },
+  {
+    id: 'studio',
+    name: 'Estúdio / Equipe',
+    tagline: 'Para espaços com 2 a 5 profissionais parceiras no mesmo link.',
+    priceMonthly: 119.9,
+    priceAnnualMonthly: 95.9,
+    features: [
+      'Tudo do Plano Pro White-Label incluído',
+      'Até 5 Lash Designers na mesma conta',
+      'Agendas individuais sincronizadas no mesmo link',
+      'Cálculo e divisão automática de comissões',
+      'Possibilidade de domínio próprio (ex: seustudio.com.br)',
+      'Treinamento em vídeo para sua equipe',
+      'Suporte prioritário exclusivo',
+    ],
+    ctaText: 'Contratar para Minha Equipe',
+  },
+];
