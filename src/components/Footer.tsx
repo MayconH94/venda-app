@@ -88,8 +88,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, leadsCount }) => {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[#422531] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#A88693]">
-          <div>
-            © {new Date().getFullYear()} {BRAND.name} · Todos os direitos reservados.
+          <div className="space-y-1 text-center sm:text-left">
+            <div>
+              © {new Date().getFullYear()} {BRAND.name} · Todos os direitos reservados.
+            </div>
+            <div className="text-[11px] text-[#A88693]/80">
+              Usamos seu nome e telefone apenas para falar com você sobre o {BRAND.name}. Não vendemos nem
+              compartilhamos seus dados. Para apagar os seus dados, é só pedir pelo WhatsApp.
+            </div>
           </div>
 
           <button
