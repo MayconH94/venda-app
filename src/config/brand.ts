@@ -6,6 +6,8 @@ export const BRAND = {
   creatorCredit: 'um produto de Maycon Desenvolvedor de Software',
   storageKey: 'lashcore_leads',
   couponCode: 'LASH50OFF',
+  // Endereço do Google Apps Script que recebe os leads (veja as instruções). Vazio = não envia.
+  leadsUrl: '',
 } as const;
 
 export function buildWhatsAppUrl(message: string): string {

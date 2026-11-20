@@ -14,6 +14,7 @@ import { AdminLeadsModal } from './components/AdminLeadsModal';
 import { MobilePlansSheet } from './components/MobilePlansSheet';
 import { CapturedLead, SubscriptionPlan } from './types';
 import { BRAND, buildWhatsAppUrl } from './config/brand';
+import { sendLead } from './config/leads';
 
 const INITIAL_DEMO_LEADS: CapturedLead[] = [
   {
@@ -119,6 +120,7 @@ export default function App() {
 
   const handleLeadCaptured = (newLead: CapturedLead) => {
     setLeads((prev) => [newLead, ...prev]);
+    sendLead(newLead);
     showToast('Diagnóstico recebido com sucesso! O resumo foi preparado.');
   };
 

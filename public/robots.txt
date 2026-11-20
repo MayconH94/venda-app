@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lashcore.mmagalhaes.workers.dev/sitemap.xml

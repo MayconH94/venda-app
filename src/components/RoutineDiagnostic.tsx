@@ -398,7 +398,7 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
                   </button>
 
                   <p className="text-[10px] text-center text-[#7D606B]">
-                    Prometemos zero spam. Seus dados são usados apenas para envio do resumo e liberação do acesso.
+                    Ao enviar, você autoriza o contato pelo WhatsApp sobre o LashCore. Prometemos zero spam, e você pode pedir a exclusão dos dados a qualquer momento.
                   </p>
                 </form>
               ) : (
