@@ -10,26 +10,26 @@ const FAQS = [
   },
   {
     question: 'Como funciona para colocar o meu logotipo e as cores do meu estúdio?',
-    answer: `No Plano Pro White-Label, basta enviar o seu logotipo (PNG ou JPEG) e escolher a paleta de cores que combina com a sua marca. A partir daí, sua cliente vê a sua identidade visual e agenda pelo seu link exclusivo (ex: ${BRAND.domain}/seustudio).`,
+    answer: `No Plano Pro White-Label, basta enviar o seu logotipo (PNG ou JPEG) e escolher a paleta de cores que combina com a sua marca. A partir daí, sua cliente vê a sua identidade visual e agenda pelo seu link.`,
   },
   {
     question: 'Posso bloquear dias, folgas e definir tempos diferentes por procedimento?',
     answer:
-      'Sim! Você define o expediente de cada dia da semana, pode fechar um dia inteiro ou bloquear algumas horas quando precisar, e configura durações reais para cada serviço (por exemplo: 2h para Volume Russo, 1h15 para Manutenção e 1h30 para Brow Lamination), além de intervalos automáticos para higienização.',
+      'Sim! Você define o expediente de cada dia da semana, pode fechar um dia inteiro ou bloquear algumas horas quando precisar, e configura durações reais para cada serviço (por exemplo: 2h para Volume Russo, 1h15 para Manutenção e 1h30 para Brow Lamination).',
   },
   {
-    question: 'Como funciona a cobrança de Sinal / Caução Pix anti-falta?',
+    question: 'Vocês cobram sinal Pix para evitar faltas?',
     answer:
-      'Você escolhe se quer ativar essa função. Ao ativar, a cliente garante o horário pagando um sinal que você definir (ex: R$ 30,00 ou R$ 50,00), que cai na sua conta e é abatido no valor total do atendimento. Isso educa as clientes e reduz drasticamente faltas e cancelamentos em cima da hora.',
+      'Ainda não. O sinal Pix está nos planos de lançamento e vai entrar no plano Premium. Enquanto isso, o botão de lembrete da agenda abre o WhatsApp com a mensagem pronta para a cliente confirmar o horário.',
   },
   {
     question: 'Preciso ter CNPJ para assinar o LashCore?',
     answer: `Não! O ${BRAND.name} foi pensado tanto para Lash Designers autônomas que atendem em casa ou sala alugada quanto para estúdios já estruturados com MEI ou CNPJ. Tudo o que você precisa é de um celular com WhatsApp.`,
   },
   {
-    question: 'Como funciona a assinatura e o teste de 7 dias grátis?',
+    question: 'Posso ver o sistema funcionando antes de contratar?',
     answer:
-      'Você testa o sistema por 7 dias sem compromisso. Se amar a praticidade e a economia de tempo, escolhe a cobrança mensal ou anual. Não existe fidelidade nem multa — você pode cancelar quando quiser.',
+      'Sim. Chame no WhatsApp e eu mostro a demonstração ao vivo, com a sua cor e a sua logo. Depois, se gostar, você escolhe a cobrança mensal ou anual. Não existe fidelidade nem multa — você pode cancelar quando quiser.',
   },
 ];
 

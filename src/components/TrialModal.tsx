@@ -141,7 +141,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({
                       required
                       value={whatsapp}
                       onChange={(e) => setWhatsapp(e.target.value)}
-                      placeholder="(31) 99999-9999"
+                      placeholder="(31) 99220-0095"
                       className="w-full text-xs p-3 bg-[#FFF9FB] border border-[#EEDCE3] rounded-xl text-[#2D1B22] focus:ring-2 focus:ring-[#B83B66]/20 focus:border-[#B83B66] focus:outline-none"
                     />
                   </div>

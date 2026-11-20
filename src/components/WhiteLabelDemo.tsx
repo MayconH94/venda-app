@@ -20,19 +20,16 @@ interface WhiteLabelDemoProps {
 }
 
 const COLOR_THEMES = [
-  { id: 'pink', name: 'Rosa LashCore', primary: '#C93B6B', bg: '#FFF5F8', accent: '#F7D6E2', text: '#2B1B21' },
-  { id: 'rose', name: 'Rosé & Ouro', primary: '#A26752', bg: '#FAF4F0', accent: '#E8D4C8', text: '#2B231D' },
-  { id: 'champagne', name: 'Champagne Nude', primary: '#967858', bg: '#F8F6F2', accent: '#E2D9CE', text: '#282420' },
-  { id: 'burgundy', name: 'Burgundy Noir', primary: '#722B38', bg: '#FBF5F6', accent: '#ECD5D9', text: '#241417' },
-  { id: 'emerald', name: 'Esmeralda Chic', primary: '#345846', bg: '#F2F7F4', accent: '#CFDFD6', text: '#1A2921' },
-  { id: 'black', name: 'Preto Minimalista', primary: '#1F1E1D', bg: '#F5F5F5', accent: '#DDDCDA', text: '#1A1918' },
+  { id: 'rose', name: 'Rosé', primary: '#B9506B', bg: '#FFF7F8', accent: '#F9D5DC', text: '#4A2A33' },
+  { id: 'vinho', name: 'Vinho', primary: '#832E4D', bg: '#FBF5F7', accent: '#E8C5D0', text: '#4A2A33' },
+  { id: 'lilas', name: 'Lilás', primary: '#774AA8', bg: '#FAF7FD', accent: '#E1D3F3', text: '#3A2A4A' },
+  { id: 'dourado', name: 'Dourado', primary: '#8F6419', bg: '#FFFBF2', accent: '#F6E0AE', text: '#3F2F14' },
+  { id: 'salvia', name: 'Sálvia', primary: '#4B7551', bg: '#F6FAF6', accent: '#C9E0CB', text: '#25392A' },
+  { id: 'petroleo', name: 'Azul-petróleo', primary: '#2B7886', bg: '#F4F9FA', accent: '#BDE0E5', text: '#1B3A41' },
 ];
 
 const PRESET_LOGOS = [
   { id: 'initials', label: 'Monograma' },
-  { id: 'sparkle', label: 'Brilho' },
-  { id: 'lotus', label: 'Floral' },
-  { id: 'modern', label: 'Studio' },
 ];
 
 const SAMPLE_SERVICES: LashService[] = [
@@ -80,7 +77,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
   const [logoType, setLogoType] = useState<'preset' | 'custom'>('preset');
   const [presetLogo, setPresetLogo] = useState('initials');
   const [customLogoUrl, setCustomLogoUrl] = useState<string | null>(null);
-  const [requireDeposit, setRequireDeposit] = useState(true);
+  const [requireDeposit, setRequireDeposit] = useState(false);
   const [depositAmount, setDepositAmount] = useState('30,00');
 
   // Client interactive booking simulation state
@@ -136,7 +133,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
             </span>
           </h2>
           <p className="text-base text-[#6B4F59]">
-            No {BRAND.name}, a estrela é o seu estúdio. O link que você coloca na bio do Instagram ou envia no WhatsApp tem 100% da sua identidade visual. Teste abaixo em tempo real:
+            No {BRAND.name}, a estrela é o seu estúdio. O link que você coloca na bio do Instagram ou envia no WhatsApp tem 100% da sua identidade visual. Veja abaixo em tempo real:
           </p>
         </div>
 
@@ -174,7 +171,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
                 className="w-full px-4 py-2.5 bg-white border border-[#EEDCE3] rounded-xl text-sm font-medium text-[#2D1B22] focus:outline-none focus:ring-2 focus:ring-[#B83B66]/20 focus:border-[#B83B66]"
               />
               <p className="text-[11px] text-[#7D606B] flex items-center gap-1">
-                <span>Seu link exclusivo:</span>
+                <span>Seu link (exemplo):</span>
                 <span className="font-mono font-medium text-[#B83B66]">
                   {BRAND.domain}/{slug}
                 </span>
@@ -220,7 +217,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
             <div className="space-y-3">
               <span className="text-xs font-semibold uppercase tracking-wider text-[#4E353F] flex items-center gap-1.5">
                 <Upload className="w-3.5 h-3.5 text-[#B83B66]" />
-                <span>Logotipo Próprio ou Monograma</span>
+                <span>Logotipo próprio ou inicial do nome</span>
               </span>
 
               <div className="flex flex-col sm:flex-row gap-3">
@@ -275,7 +272,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
             <div className="pt-2 border-t border-[#F2DCE4] flex items-center justify-between gap-4">
               <div>
                 <label htmlFor="pixDeposit" className="text-xs font-semibold text-[#2D1B22] block cursor-pointer">
-                  Exigir Sinal / Caução Pix Anti-Falta
+                  Sinal Pix Anti-Falta (em breve)
                 </label>
                 <span className="text-[11px] text-[#7D606B] block">
                   A cliente paga um valor antecipado (abatido no total) para garantir a vaga.
@@ -562,7 +559,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
                         />
                         <input
                           type="tel"
-                          placeholder="WhatsApp com DDD (ex: 31 99999-9999)"
+                          placeholder="WhatsApp com DDD (ex: 31 99220-0095)"
                           value={clientWhatsapp}
                           onChange={(e) => setClientWhatsapp(e.target.value)}
                           className="w-full text-xs p-2 bg-[#F9F7F5] border border-gray-200 rounded-lg focus:outline-none"

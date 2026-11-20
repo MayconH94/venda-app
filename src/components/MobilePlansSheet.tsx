@@ -71,7 +71,7 @@ export const MobilePlansSheet: React.FC<MobilePlansSheetProps> = ({
                   <h3 className="font-serif font-bold text-xl text-[#2D1B22] leading-tight">
                     Planos {BRAND.name}
                   </h3>
-                  <p className="text-[11px] text-[#6B4F59]">7 dias grátis · Coloque seu logotipo</p>
+                  <p className="text-[11px] text-[#6B4F59]">Demonstração ao vivo · Coloque seu logotipo</p>
                 </div>
               </div>
               <button

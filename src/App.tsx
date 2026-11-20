@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MotionConfig, motion } from 'motion/react';
-import { MessageCircle, CheckCircle, Gem } from 'lucide-react';
+import { CheckCircle, Gem } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { PainPointsAndSolutions } from './components/PainPointsAndSolutions';
@@ -8,13 +8,11 @@ import { AppVideoDemo } from './components/AppVideoDemo';
 import { WhiteLabelDemo } from './components/WhiteLabelDemo';
 import { RoutineDiagnostic } from './components/RoutineDiagnostic';
 import { PricingSection } from './components/PricingSection';
-import { Testimonials } from './components/Testimonials';
 import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
-import { TrialModal } from './components/TrialModal';
 import { AdminLeadsModal } from './components/AdminLeadsModal';
 import { MobilePlansSheet } from './components/MobilePlansSheet';
-import { CapturedLead, SubscriptionPlan, TrialFormData } from './types';
+import { CapturedLead, SubscriptionPlan } from './types';
 import { BRAND, buildWhatsAppUrl } from './config/brand';
 
 const INITIAL_DEMO_LEADS: CapturedLead[] = [
@@ -65,11 +63,8 @@ export default function App() {
     return INITIAL_DEMO_LEADS;
   });
 
-  const [isTrialOpen, setIsTrialOpen] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isPlansSheetOpen, setIsPlansSheetOpen] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<SubscriptionPlan | null>(null);
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const hasAutoPoppedRef = useRef(false);
@@ -94,7 +89,6 @@ export default function App() {
         dwellElapsedRef.current &&
         window.innerWidth < 768 &&
         window.scrollY > 320 &&
-        !isTrialOpen &&
         !isAdminOpen
       ) {
         const pricingEl = document.getElementById('planos');
@@ -114,7 +108,7 @@ export default function App() {
       clearTimeout(dwellTimer);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isTrialOpen, isAdminOpen]);
+  }, [isAdminOpen]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -128,28 +122,6 @@ export default function App() {
     showToast('Diagnóstico recebido com sucesso! O resumo foi preparado.');
   };
 
-  const handleTrialSuccess = (trialData: TrialFormData) => {
-    const newLead: CapturedLead = {
-      id: Date.now().toString(),
-      createdAt: trialData.createdAt,
-      designerName: trialData.designerName,
-      studioName: trialData.studioName,
-      whatsapp: trialData.whatsapp,
-      instagram: trialData.instagram,
-      email: trialData.email,
-      weeklyClients: 18,
-      dailyChatHours: 2,
-      monthlyNoShows: 3,
-      averageTicket: 180,
-      calculatedTimeSavedMonthlyHours: 48,
-      calculatedRevenueRecoveredMonthly: 540,
-      biggestPainPoint: `Interesse no teste grátis plano: ${trialData.planChoice} (${trialData.billingCycle})`,
-    };
-
-    setLeads((prev) => [newLead, ...prev]);
-    showToast('Cadastro de teste gratuito realizado com sucesso!');
-  };
-
   const handleClearLeads = () => {
     if (window.confirm('Deseja limpar todos os leads e diagnósticos salvos?')) {
       setLeads([]);
@@ -158,16 +130,22 @@ export default function App() {
     }
   };
 
-  const openTrialWithPlan = (plan: SubscriptionPlan, cycle: 'monthly' | 'annual') => {
-    setSelectedPlan(plan);
-    setBillingCycle(cycle);
-    setIsTrialOpen(true);
+  const openWhatsAppDemo = () => {
+    window.open(
+      buildWhatsAppUrl('Oi! Quero ver uma demonstração do sistema de agendamento.'),
+      '_blank',
+      'noopener,noreferrer'
+    );
   };
 
-  const openDefaultTrial = () => {
-    setSelectedPlan(null);
-    setBillingCycle('monthly');
-    setIsTrialOpen(true);
+  const openWhatsAppPlan = (plan: SubscriptionPlan, cycle: 'monthly' | 'annual') => {
+    window.open(
+      buildWhatsAppUrl(
+        `Oi! Quero ver uma demonstração do sistema de agendamento e tenho interesse no plano ${plan.name} (${cycle === 'annual' ? 'anual' : 'mensal'}).`
+      ),
+      '_blank',
+      'noopener,noreferrer'
+    );
   };
 
   const scrollToDiagnostic = () => {
@@ -204,33 +182,30 @@ export default function App() {
         )}
 
         {/* Top Bar */}
-        <Navbar onOpenDiagnostic={scrollToDiagnostic} onOpenTrial={openDefaultTrial} />
+        <Navbar onOpenDiagnostic={scrollToDiagnostic} onOpenTrial={openWhatsAppDemo} />
 
         <main className="flex-1">
           {/* Hero Section with Real App Preview */}
           <Hero
-            onOpenTrial={openDefaultTrial}
+            onOpenTrial={openWhatsAppDemo}
             onOpenDiagnostic={scrollToDiagnostic}
             onOpenPlans={handleOpenPlansAction}
           />
 
           {/* Everyday Pain Points vs Automated Solution */}
-          <PainPointsAndSolutions onOpenTrial={openDefaultTrial} />
+          <PainPointsAndSolutions onOpenTrial={openWhatsAppDemo} />
 
           {/* Real Product Video Demo & 3 Steps */}
-          <AppVideoDemo onOpenTrial={openDefaultTrial} />
+          <AppVideoDemo onOpenTrial={openWhatsAppDemo} />
 
           {/* Live Interactive White-Label Demo & Studio Logo Customizer */}
-          <WhiteLabelDemo onOpenTrial={openDefaultTrial} />
+          <WhiteLabelDemo onOpenTrial={openWhatsAppDemo} />
 
           {/* Interactive Routine Diagnostic Tool & Lead Capture */}
           <RoutineDiagnostic onLeadCaptured={handleLeadCaptured} />
 
           {/* Subscription Plans & Pricing Table */}
-          <PricingSection onSelectPlan={openTrialWithPlan} />
-
-          {/* Testimonials & Social Proof */}
-          <Testimonials />
+          <PricingSection onSelectPlan={openWhatsAppPlan} />
 
           {/* Frequently Asked Questions */}
           <FAQ />
@@ -250,7 +225,7 @@ export default function App() {
           className="md:hidden fixed bottom-3 left-3 z-40 h-11 px-4 rounded-full bg-[#2B1820] text-white border border-[#B83B66] shadow-xl flex items-center gap-2 text-xs font-semibold whitespace-nowrap shrink-0"
         >
           <Gem className="w-3.5 h-3.5 text-[#F7D6E2]" />
-          <span>Ver Planos · R$ 31,90</span>
+          <span>Ver Planos · R$ 39,90</span>
         </motion.button>
 
         {/* Floating WhatsApp Action Button */}
@@ -263,7 +238,13 @@ export default function App() {
           aria-label="Falar no WhatsApp"
           className="fixed bottom-3 right-3 md:bottom-6 md:right-6 z-40 h-11 w-11 md:h-auto md:w-auto md:p-3.5 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-full shadow-xl hover:shadow-2xl transition-all hover:scale-105 active:scale-95 flex items-center justify-center group"
         >
-          <MessageCircle className="w-5 h-5 md:w-6 md:h-6 fill-current" />
+          <img
+            src="/assets/WhatsApp-icon.png"
+            alt=""
+            width={32}
+            height={32}
+            className="w-6 h-6 md:w-8 md:h-8 object-contain"
+          />
           <span className="hidden md:inline-block max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 ease-in-out whitespace-nowrap text-xs font-bold pl-0 group-hover:pl-2">
             Dúvidas? Fale no WhatsApp
           </span>
@@ -273,17 +254,8 @@ export default function App() {
         <MobilePlansSheet
           isOpen={isPlansSheetOpen}
           onClose={() => setIsPlansSheetOpen(false)}
-          onSelectPlan={openTrialWithPlan}
+          onSelectPlan={openWhatsAppPlan}
           onScrollToFullTable={scrollToPlans}
-        />
-
-        {/* Trial Modal */}
-        <TrialModal
-          isOpen={isTrialOpen}
-          onClose={() => setIsTrialOpen(false)}
-          selectedPlan={selectedPlan}
-          billingCycle={billingCycle}
-          onSuccess={handleTrialSuccess}
         />
 
         {/* Admin Leads & Survey Data Modal */}

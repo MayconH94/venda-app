@@ -75,7 +75,7 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
         `💸 Prejuízo mensal com faltas: R$ ${monthlyMoneyLost},00\n` +
         `🎯 Maior dor: ${biggestPainPoint}\n` +
         `🎟️ Cupom: ${BRAND.couponCode}\n\n` +
-        `Gostaria de liberar meu teste grátis com logo próprio e tirar dúvidas!`
+        `Gostaria de ver uma demonstração com logo próprio e tirar dúvidas!`
     );
   };
 
@@ -288,7 +288,7 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
                   <strong className="text-white">
                     R$ {yearlyLostRevenue.toLocaleString('pt-BR')},00
                   </strong>{' '}
-                  por não ter sinal antecipado e lembretes automáticos.
+                  por faltas e por mensagens que ficam sem resposta (estimativa).
                 </p>
               </div>
 
@@ -299,7 +299,7 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
                   Com o {BRAND.name} White-Label:
                 </div>
                 <p className="text-xs text-white/90 leading-relaxed">
-                  Você recupera até <strong>{timeRecoveredWeekly} horas livres toda semana</strong> e protege sua maca contra faltas com confirmação no WhatsApp e sinal Pix.
+                  Estimativa: até <strong>{timeRecoveredWeekly} horas livres toda semana</strong>, com a cliente agendando sozinha e o lembrete pronto para confirmar no WhatsApp.
                 </p>
               </div>
             </div>
@@ -357,7 +357,7 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
                           required
                           value={whatsapp}
                           onChange={(e) => setWhatsapp(e.target.value)}
-                          placeholder="(31) 99999-9999"
+                          placeholder="(31) 99220-0095"
                           className="w-full text-xs p-2.5 bg-[#FFF9FB] border border-[#EEDCE3] rounded-xl text-[#2D1B22] focus:ring-2 focus:ring-[#B83B66]/20 focus:border-[#B83B66] focus:outline-none"
                         />
                       </div>
@@ -377,7 +377,7 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
 
                     <div>
                       <label className="block text-[11px] font-bold uppercase tracking-wider text-[#6B4F59] mb-1">
-                        E-mail (Para liberar o teste)
+                        E-mail
                       </label>
                       <input
                         type="email"
@@ -394,7 +394,7 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
                     className="w-full py-3.5 px-4 text-xs font-semibold uppercase tracking-wider text-white bg-[#B83B66] hover:bg-[#962A50] rounded-xl transition-all shadow-sm flex items-center justify-center gap-2"
                   >
                     <Send className="w-3.5 h-3.5" />
-                    <span>Salvar Diagnóstico & Liberar Teste Grátis</span>
+                    <span>Salvar Diagnóstico</span>
                   </button>
 
                   <p className="text-[10px] text-center text-[#7D606B]">

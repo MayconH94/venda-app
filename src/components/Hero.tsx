@@ -1,6 +1,5 @@
 import React from 'react';
 import { ArrowRight, CheckCircle2, Eye, Clock, ShieldCheck, PlayCircle } from 'lucide-react';
-import { BRAND } from '../config/brand';
 
 interface HeroProps {
   onOpenTrial: () => void;
@@ -50,7 +49,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTrial, onOpenDiagnostic, onOpe
                   onClick={onOpenTrial}
                   className="px-7 py-4 text-sm font-semibold tracking-wide uppercase text-white bg-[#B83B66] hover:bg-[#962A50] rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-center"
                 >
-                  <span>Experimentar 7 Dias Grátis</span>
+                  <span>Quero ver uma demonstração</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
@@ -70,7 +69,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTrial, onOpenDiagnostic, onOpe
                   onClick={onOpenPlans}
                   className="text-xs font-semibold text-[#B83B66] hover:text-[#962A50] underline underline-offset-4 decoration-[#E9B5C7] transition-colors inline-flex items-center gap-1"
                 >
-                  <span>Ver planos com seu logotipo (a partir de R$ 31,90/mês)</span>
+                  <span>Ver planos com seu logotipo (a partir de R$ 39,90/mês)</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
 
@@ -152,7 +151,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTrial, onOpenDiagnostic, onOpe
                     </div>
                     <div>
                       <div className="text-xs font-bold text-[#2D1B22]">Studio Ana Lash</div>
-                      <div className="text-[10px] text-[#7D606B] font-mono">{BRAND.domain}/ana-lash</div>
+                      <div className="text-[10px] text-[#7D606B] font-mono">Seu link na bio</div>
                     </div>
                   </div>
                   <span className="text-[9px] font-semibold text-[#3E7051] bg-[#E8F3EB] px-1.5 py-0.5 rounded">
@@ -161,9 +160,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTrial, onOpenDiagnostic, onOpe
                 </div>
                 <div className="flex items-center justify-between text-[11px] text-[#3E7051]">
                   <span className="flex items-center gap-1">
-                    <ShieldCheck className="w-3.5 h-3.5" /> Lembrete WhatsApp
+                    <ShieldCheck className="w-3.5 h-3.5" /> Avisos no celular
                   </span>
-                  <span className="font-semibold text-[#B83B66]">Sinal Pix OK</span>
+                  <span className="font-semibold text-[#B83B66]">Online</span>
                 </div>
               </div>
             </div>
@@ -173,16 +172,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTrial, onOpenDiagnostic, onOpe
         {/* 4-Item Proof Strip Row Below Hero */}
         <div className="mt-16 pt-10 border-t border-[#F2DCE4] grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="space-y-1">
-            <div className="font-serif text-3xl sm:text-4xl font-bold text-[#B83B66] tabular-nums">10+ Horas</div>
-            <div className="text-xs sm:text-sm text-[#6B4F59]">Recuperadas da rotina toda semana</div>
+            <div className="font-serif text-3xl sm:text-4xl font-bold text-[#B83B66] tabular-nums">1 toque</div>
+            <div className="text-xs sm:text-sm text-[#6B4F59]">Lembrete pronto para cada cliente</div>
           </div>
           <div className="space-y-1">
-            <div className="font-serif text-3xl sm:text-4xl font-bold text-[#B83B66] tabular-nums">-92%</div>
-            <div className="text-xs sm:text-sm text-[#6B4F59]">De faltas com confirmação e sinal Pix</div>
+            <div className="font-serif text-3xl sm:text-4xl font-bold text-[#B83B66] tabular-nums">Sem chat</div>
+            <div className="text-xs sm:text-sm text-[#6B4F59]">Agendamento 24h sem você responder mensagem</div>
           </div>
           <div className="space-y-1">
-            <div className="font-serif text-3xl sm:text-4xl font-bold text-[#B83B66] tabular-nums">100% Sua</div>
-            <div className="text-xs sm:text-sm text-[#6B4F59]">Seu logotipo, sua paleta e suas regras</div>
+            <div className="font-serif text-3xl sm:text-4xl font-bold text-[#B83B66] tabular-nums">Sua marca</div>
+            <div className="text-xs sm:text-sm text-[#6B4F59]">Sua cor, seu nome, sua logo</div>
           </div>
           <div className="space-y-1">
             <div className="font-serif text-3xl sm:text-4xl font-bold text-[#B83B66] tabular-nums">24h / dia</div>

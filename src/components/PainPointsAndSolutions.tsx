@@ -106,13 +106,13 @@ export const PainPointsAndSolutions: React.FC<PainPointsProps> = ({ onOpenTrial 
               <li className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#3E7051] mt-2 shrink-0" />
                 <span>
-                  <strong>Sinal Pix Anti-Falta:</strong> Proteja seus horários com sinal antecipado (ex: R$ 30 ou R$ 50) abatido no atendimento. O no-show despenca.
+                  <strong>Sinal Pix Anti-Falta (em breve):</strong> Estamos preparando o sinal antecipado para proteger seus horários.
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#3E7051] mt-2 shrink-0" />
                 <span>
-                  <strong>Lembretes e Mensagens Prontas no WhatsApp:</strong> Confirmação 24h e 2h antes com orientações de pré-atendimento (vir sem rímel e com os olhos limpos).
+                  <strong>Lembrete em 1 toque no WhatsApp:</strong> Na agenda, um botão abre a conversa com a mensagem pronta confirmando o horário. É só enviar.
                 </span>
               </li>
               <li className="flex items-start gap-3">
@@ -232,7 +232,7 @@ export const PainPointsAndSolutions: React.FC<PainPointsProps> = ({ onOpenTrial 
             onClick={onOpenTrial}
             className="px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white bg-[#B83B66] hover:bg-[#962A50] rounded-xl transition-all shadow-md hover:shadow-lg inline-flex items-center gap-2"
           >
-            <span>Quero Experimentar Sem Compromisso (7 Dias Grátis)</span>
+            <span>Quero Ver uma Demonstração</span>
           </button>
         </div>
       </div>

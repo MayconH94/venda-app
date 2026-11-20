@@ -125,7 +125,7 @@ export const AdminLeadsModal: React.FC<AdminLeadsModalProps> = ({
               <Clock className="w-8 h-8 mx-auto opacity-50" />
               <p className="text-sm">Nenhum diagnóstico preenchido ainda.</p>
               <p className="text-xs">
-                Preencha o formulário na seção "Diagnóstico da Rotina" ou clique em "Experimentar 7 Dias Grátis" para ver os dados aparecerem aqui em tempo real.
+                Preencha o formulário na seção "Diagnóstico da Rotina" ou envie o formulário de contato para ver os dados aparecerem aqui em tempo real.
               </p>
             </div>
           ) : (

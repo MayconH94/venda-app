@@ -40,7 +40,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
             </span>
           </h2>
           <p className="text-sm sm:text-base text-[#6B4F59]">
-            Sem surpresas e sem taxas por agendamento. Teste por 7 dias grátis com sua própria marca antes de qualquer cobrança.
+            Sem surpresas e sem taxas por agendamento. Veja a demonstração ao vivo, com a sua marca, antes de contratar.
           </p>
 
           {/* Billing Cycle Switch */}
@@ -142,7 +142,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                     className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#B83B66] text-white text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md flex items-center gap-1 whitespace-nowrap"
                   >
                     <Crown className="w-3 h-3" />
-                    <span>Mais Escolhido</span>
+                    <span>Recomendado</span>
                   </motion.div>
                 )}
 
@@ -252,7 +252,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                       activeMobilePlan.popular ? 'text-[#C6A9B4]' : 'text-[#7D606B]'
                     }`}
                   >
-                    7 dias de teste gratuito · Cancele quando quiser
+                    Peça uma demonstração · Cancele quando quiser
                   </p>
                 </div>
               </motion.div>
@@ -296,7 +296,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                     className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#B83B66] text-white text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-sm flex items-center gap-1 whitespace-nowrap"
                   >
                     <Crown className="w-3 h-3" />
-                    <span>Mais Escolhido pelas Lash Designers</span>
+                    <span>Recomendado</span>
                   </motion.div>
                 )}
 
@@ -402,7 +402,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                       isPro ? 'text-[#C6A9B4]' : 'text-[#7D606B]'
                     }`}
                   >
-                    7 dias de teste gratuito · Cancele quando quiser
+                    Peça uma demonstração · Cancele quando quiser
                   </p>
                 </div>
               </motion.div>

@@ -1,5 +1,4 @@
 import { SubscriptionPlan } from '../types';
-import { BRAND } from '../config/brand';
 
 export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   {
@@ -10,11 +9,12 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
     priceAnnualMonthly: 31.9,
     features: [
       'Agendamento online 24h direto pelo celular',
-      'Link exclusivo para bio do Instagram e WhatsApp',
+      'Link para colocar na bio do Instagram e no WhatsApp',
       'Catálogo de serviços com fotos, preços e duração',
       'Controle de expediente da semana e bloqueio de folgas',
-      'Agenda do dia com cancelamento e toque para WhatsApp',
+      'Agenda do dia com cancelamento',
       'Lembrete de retorno para manutenção de cílios',
+      'Botão de lembrete: abre o WhatsApp com a mensagem pronta',
       'Suporte pelo WhatsApp em horário comercial',
     ],
     ctaText: 'Começar com Essencial',
@@ -22,40 +22,33 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   {
     id: 'pro',
     name: 'Pro White-Label',
-    tagline: 'O mais vendido: Seu logotipo, suas cores, configuração inicial e zero faltas.',
+    tagline: 'Seu logotipo, suas cores e avisos de novos agendamentos no celular.',
     popular: true,
     priceMonthly: 69.9,
     priceAnnualMonthly: 55.9,
     whiteLabelHighlighted: true,
     features: [
-      '★ SEU LOGOTIPO E IDENTIDADE VISUAL (White-Label)',
-      `★ Link exclusivo: ${BRAND.domain}/seustudio`,
+      'Tudo do plano Essencial',
+      '★ SEU LOGOTIPO, NOME E CORES NA PÁGINA DE AGENDAMENTO',
+      '★ Avisos de novos agendamentos direto no seu celular',
       '★ Configuração inicial feita por nós (serviços, fotos e horários)',
-      '★ Sinal Pix Anti-Falta (cobre sinal antecipado e zere no-shows)',
-      '★ Lembretes automáticos no WhatsApp 24h e 2h antes',
-      '★ Alerta inteligente de manutenção de cílios (15 a 21 dias)',
-      '★ Intervalo automático de higienização de pinças e maca',
       'Agendamentos 100% ilimitados',
-      'Ficha de anamnese ocular digital e histórico da cliente',
-      'Suporte VIP prioritário via WhatsApp',
+      'Suporte prioritário via WhatsApp',
     ],
     ctaText: 'Garantir Plano Pro com Meu Logo',
   },
   {
     id: 'studio',
-    name: 'Estúdio / Equipe',
-    tagline: 'Para espaços com 2 a 5 profissionais parceiras no mesmo link.',
+    name: 'Premium',
+    tagline: 'Tudo do Pro, com automações que estamos lançando. Entre na lista.',
     priceMonthly: 119.9,
     priceAnnualMonthly: 95.9,
     features: [
-      'Tudo do Plano Pro White-Label incluído',
-      'Até 5 Lash Designers na mesma conta',
-      'Agendas individuais sincronizadas no mesmo link',
-      'Cálculo e divisão automática de comissões',
-      'Possibilidade de domínio próprio (ex: seustudio.com.br)',
-      'Treinamento em vídeo para sua equipe',
+      'Tudo do plano Pro White-Label incluído',
+      'Lembretes automáticos no WhatsApp para as clientes (em breve)',
+      'Sinal Pix para reduzir faltas (em breve)',
       'Suporte prioritário exclusivo',
     ],
-    ctaText: 'Contratar para Minha Equipe',
+    ctaText: 'Quero entrar na lista do Premium',
   },
 ];
