@@ -49,7 +49,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTrial, onOpenDiagnostic, onOpe
                   onClick={onOpenTrial}
                   className="px-7 py-4 text-sm font-semibold tracking-wide uppercase text-white bg-[#B83B66] hover:bg-[#962A50] rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-center"
                 >
-                  <span>Quero ver uma demonstração</span>
+                  <span>Testar 7 dias grátis</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
 

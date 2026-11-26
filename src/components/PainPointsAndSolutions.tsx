@@ -232,7 +232,7 @@ export const PainPointsAndSolutions: React.FC<PainPointsProps> = ({ onOpenTrial 
             onClick={onOpenTrial}
             className="px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white bg-[#B83B66] hover:bg-[#962A50] rounded-xl transition-all shadow-md hover:shadow-lg inline-flex items-center gap-2"
           >
-            <span>Quero Ver uma Demonstração</span>
+            <span>Testar 7 Dias Grátis</span>
           </button>
         </div>
       </div>

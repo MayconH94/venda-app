@@ -12,9 +12,10 @@ import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { AdminLeadsModal } from './components/AdminLeadsModal';
 import { MobilePlansSheet } from './components/MobilePlansSheet';
-import { CapturedLead, SubscriptionPlan } from './types';
+import { TrialModal } from './components/TrialModal';
+import { CapturedLead, SubscriptionPlan, TrialFormData } from './types';
 import { BRAND, buildWhatsAppUrl } from './config/brand';
-import { sendLead } from './config/leads';
+import { sendLead, sendTrial } from './config/leads';
 
 const INITIAL_DEMO_LEADS: CapturedLead[] = [
   {
@@ -66,6 +67,9 @@ export default function App() {
 
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isPlansSheetOpen, setIsPlansSheetOpen] = useState(false);
+  const [isTrialOpen, setIsTrialOpen] = useState(false);
+  const [trialPlan, setTrialPlan] = useState<SubscriptionPlan | null>(null);
+  const [trialCycle, setTrialCycle] = useState<'monthly' | 'annual'>('monthly');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const hasAutoPoppedRef = useRef(false);
@@ -132,22 +136,20 @@ export default function App() {
     }
   };
 
-  const openWhatsAppDemo = () => {
-    window.open(
-      buildWhatsAppUrl('Oi! Quero ver uma demonstração do sistema de agendamento.'),
-      '_blank',
-      'noopener,noreferrer'
-    );
+  const openTrial = () => {
+    setTrialPlan(null);
+    setIsTrialOpen(true);
   };
 
-  const openWhatsAppPlan = (plan: SubscriptionPlan, cycle: 'monthly' | 'annual') => {
-    window.open(
-      buildWhatsAppUrl(
-        `Oi! Quero ver uma demonstração do sistema de agendamento e tenho interesse no plano ${plan.name} (${cycle === 'annual' ? 'anual' : 'mensal'}).`
-      ),
-      '_blank',
-      'noopener,noreferrer'
-    );
+  const openTrialPlan = (plan: SubscriptionPlan, cycle: 'monthly' | 'annual') => {
+    setTrialPlan(plan);
+    setTrialCycle(cycle);
+    setIsPlansSheetOpen(false);
+    setIsTrialOpen(true);
+  };
+
+  const handleTrialSuccess = (data: TrialFormData) => {
+    sendTrial(data);
   };
 
   const scrollToDiagnostic = () => {
@@ -184,30 +186,30 @@ export default function App() {
         )}
 
         {/* Top Bar */}
-        <Navbar onOpenDiagnostic={scrollToDiagnostic} onOpenTrial={openWhatsAppDemo} />
+        <Navbar onOpenDiagnostic={scrollToDiagnostic} onOpenTrial={openTrial} />
 
         <main className="flex-1">
           {/* Hero Section with Real App Preview */}
           <Hero
-            onOpenTrial={openWhatsAppDemo}
+            onOpenTrial={openTrial}
             onOpenDiagnostic={scrollToDiagnostic}
             onOpenPlans={handleOpenPlansAction}
           />
 
           {/* Everyday Pain Points vs Automated Solution */}
-          <PainPointsAndSolutions onOpenTrial={openWhatsAppDemo} />
+          <PainPointsAndSolutions onOpenTrial={openTrial} />
 
           {/* Real Product Video Demo & 3 Steps */}
-          <AppVideoDemo onOpenTrial={openWhatsAppDemo} />
+          <AppVideoDemo onOpenTrial={openTrial} />
 
           {/* Live Interactive White-Label Demo & Studio Logo Customizer */}
-          <WhiteLabelDemo onOpenTrial={openWhatsAppDemo} />
+          <WhiteLabelDemo onOpenTrial={openTrial} />
 
           {/* Interactive Routine Diagnostic Tool & Lead Capture */}
           <RoutineDiagnostic onLeadCaptured={handleLeadCaptured} />
 
           {/* Subscription Plans & Pricing Table */}
-          <PricingSection onSelectPlan={openWhatsAppPlan} />
+          <PricingSection onSelectPlan={openTrialPlan} />
 
           {/* Frequently Asked Questions */}
           <FAQ />
@@ -256,8 +258,17 @@ export default function App() {
         <MobilePlansSheet
           isOpen={isPlansSheetOpen}
           onClose={() => setIsPlansSheetOpen(false)}
-          onSelectPlan={openWhatsAppPlan}
+          onSelectPlan={openTrialPlan}
           onScrollToFullTable={scrollToPlans}
+        />
+
+        {/* Teste grátis de 7 dias */}
+        <TrialModal
+          isOpen={isTrialOpen}
+          onClose={() => setIsTrialOpen(false)}
+          selectedPlan={trialPlan}
+          billingCycle={trialCycle}
+          onSuccess={handleTrialSuccess}
         />
 
         {/* Admin Leads & Survey Data Modal */}

@@ -308,7 +308,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
                 onClick={onOpenTrial}
                 className="w-full py-3.5 px-4 text-xs font-semibold uppercase tracking-wider text-white bg-[#B83B66] hover:bg-[#962A50] rounded-xl transition-all shadow-sm flex items-center justify-center gap-2"
               >
-                <span>Garantir Meu Sistema com Meu Logotipo</span>
+                <span>Testar 7 Dias com Meu Logotipo</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </button>
             </div>

@@ -17,7 +17,7 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
       'Botão de lembrete: abre o WhatsApp com a mensagem pronta',
       'Suporte pelo WhatsApp em horário comercial',
     ],
-    ctaText: 'Começar com Essencial',
+    ctaText: 'Testar 7 dias grátis',
   },
   {
     id: 'pro',
@@ -35,7 +35,7 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
       'Agendamentos 100% ilimitados',
       'Suporte prioritário via WhatsApp',
     ],
-    ctaText: 'Garantir Plano Pro com Meu Logo',
+    ctaText: 'Testar 7 dias com meu logo',
   },
   {
     id: 'studio',

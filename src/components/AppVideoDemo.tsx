@@ -94,7 +94,7 @@ export const AppVideoDemo: React.FC<AppVideoDemoProps> = ({ onOpenTrial }) => {
                 onClick={onOpenTrial}
                 className="px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-white bg-[#B83B66] hover:bg-[#962A50] rounded-xl shadow-sm transition-all flex items-center justify-center gap-2"
               >
-                <span>Quero ver uma demonstração</span>
+                <span>Testar 7 dias grátis</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 

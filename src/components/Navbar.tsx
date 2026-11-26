@@ -53,7 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDiagnostic, onOpenTrial })
             onClick={onOpenTrial}
             className="px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white bg-[#B83B66] hover:bg-[#962A50] rounded-full transition-all shadow-sm hover:shadow active:scale-[0.98] whitespace-nowrap shrink-0 flex items-center gap-1.5"
           >
-            Ver demonstração
+            Testar 7 dias grátis
             <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -128,7 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDiagnostic, onOpenTrial })
               }}
               className="w-full text-center py-3 text-xs font-semibold uppercase tracking-wider text-white bg-[#B83B66] rounded-full"
             >
-              Ver demonstração
+              Testar 7 dias grátis
             </button>
           </div>
         </div>

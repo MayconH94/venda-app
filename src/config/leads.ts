@@ -1,5 +1,5 @@
 import { BRAND } from './brand';
-import type { CapturedLead } from '../types';
+import type { CapturedLead, TrialFormData } from '../types';
 
 /**
  * Envia o lead para a planilha (Google Apps Script). Nunca atrapalha a página:
@@ -35,4 +35,33 @@ export function sendLead(lead: CapturedLead): void {
   }).catch(() => {
     // sem rede: o lead continua salvo no navegador
   });
+}
+
+/** Envia o pedido de teste grátis de 7 dias para a mesma planilha. Nunca atrapalha a página. */
+export function sendTrial(data: TrialFormData): void {
+  if (!BRAND.leadsUrl) return;
+
+  const payload = {
+    createdAt: data.createdAt,
+    designerName: data.designerName,
+    studioName: data.studioName,
+    whatsapp: data.whatsapp,
+    instagram: data.instagram,
+    email: data.email,
+    planChoice: data.planChoice,
+    billingCycle: data.billingCycle,
+    source: 'teste-7-dias',
+  };
+
+  fetch(BRAND.leadsUrl, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload),
+    keepalive: true,
+  }).catch(() => {
+    // sem rede: o cliente ainda pode chamar pelo WhatsApp na tela de confirmação
+  });
+
+  
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, Crown, Check, ArrowRight, ShieldCheck, MessageCircle } from 'lucide-react';
 import { SubscriptionPlan, TrialFormData } from '../types';
 import { SUBSCRIPTION_PLANS } from '../data/plans';
-import { BRAND, buildWhatsAppUrl, slugifyStudio } from '../config/brand';
+import { BRAND, buildWhatsAppUrl } from '../config/brand';
 
 interface TrialModalProps {
   isOpen: boolean;
@@ -25,12 +25,14 @@ export const TrialModal: React.FC<TrialModalProps> = ({
   const [instagram, setInstagram] = useState('');
   const [email, setEmail] = useState('');
   const [planChoice, setPlanChoice] = useState(selectedPlan?.id || 'pro');
+  const [accepted, setAccepted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
       setPlanChoice(selectedPlan?.id || 'pro');
       setSubmitted(false);
+      setAccepted(false);
     }
   }, [isOpen, selectedPlan]);
 
@@ -40,7 +42,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!designerName || !whatsapp) return;
+    if (!designerName || !whatsapp || !accepted) return;
 
     const data: TrialFormData = {
       designerName,
@@ -173,19 +175,34 @@ export const TrialModal: React.FC<TrialModalProps> = ({
                 </div>
               </div>
 
+              <label className="flex items-start gap-2 text-[11px] text-[#6B4F59] leading-snug cursor-pointer">
+                <input
+                  type="checkbox"
+                  required
+                  checked={accepted}
+                  onChange={(e) => setAccepted(e.target.checked)}
+                  className="mt-0.5 accent-[#B83B66]"
+                />
+                <span>
+                  Autorizo o {BRAND.name} a entrar em contato pelo WhatsApp para liberar meu teste. Meus dados
+                  serão usados só para isso e posso pedir a exclusão quando quiser.
+                </span>
+              </label>
+
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-4 text-xs font-semibold uppercase tracking-wider text-white bg-[#B83B66] hover:bg-[#962A50] rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
+                  disabled={!accepted}
+                  className="w-full py-4 text-xs font-semibold uppercase tracking-wider text-white bg-[#B83B66] hover:bg-[#962A50] rounded-xl shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <span>Ativar Meu Teste de 7 Dias Agora</span>
+                  <span>Quero Meu Teste de 7 Dias</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
 
               <div className="flex items-center justify-center gap-2 text-[11px] text-[#7D606B] pt-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#5B8266]" />
-                <span>Liberação rápida pelo WhatsApp ou E-mail</span>
+                <span>Retorno pelo WhatsApp para liberar seu acesso</span>
               </div>
             </form>
           ) : (
@@ -194,25 +211,13 @@ export const TrialModal: React.FC<TrialModalProps> = ({
                 <Check className="w-7 h-7 stroke-[3]" />
               </div>
               <h4 className="font-serif font-bold text-2xl text-[#2D1B22]">
-                Solicitação Recebida, {designerName.split(' ')[0]}!
+                Pedido recebido, {designerName.split(' ')[0]}!
               </h4>
               <p className="text-xs text-[#6B4F59] leading-relaxed max-w-sm mx-auto">
-                Seus 7 dias gratuitos no plano <strong>{chosenPlan.name}</strong> para o{' '}
-                <strong>{studioName || designerName}</strong> foram reservados.
+                Recebemos seu pedido de 7 dias grátis no plano <strong>{chosenPlan.name}</strong> para o{' '}
+                <strong>{studioName || designerName}</strong>. Vamos te chamar no WhatsApp para configurar
+                seu acesso e a sua marca.
               </p>
-
-              <div className="p-3 bg-[#FFF9FB] rounded-xl border border-[#F2DCE4] text-xs text-left space-y-1">
-                <div className="flex justify-between gap-2">
-                  <span className="text-[#6B4F59]">Seu link exclusivo:</span>
-                  <strong className="text-[#B83B66] font-mono">
-                    {BRAND.domain}/{slugifyStudio(studioName || designerName)}
-                  </strong>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-[#6B4F59]">Personalização de Logo:</span>
-                  <strong className="text-[#5B8266]">Habilitada no Teste</strong>
-                </div>
-              </div>
 
               <div className="space-y-2.5 pt-1">
                 <a
@@ -222,7 +227,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({
                   className="w-full py-3.5 text-xs font-bold uppercase tracking-wider text-white bg-[#25D366] hover:bg-[#1EBE5D] rounded-xl flex items-center justify-center gap-2 transition-colors"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  <span>Liberar Mais Rápido no WhatsApp</span>
+                  <span>Falar agora no WhatsApp</span>
                 </a>
 
                 <button
