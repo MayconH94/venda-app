@@ -13,17 +13,18 @@ import { BRAND, buildWhatsAppUrl } from '../config/brand';
 
 interface RoutineDiagnosticProps {
   onLeadCaptured: (lead: CapturedLead) => void;
+  onOpenTrial: () => void;
 }
 
 const COMMON_PAINS = [
   'Mensagens tarde da noite e nos finais de semana perguntando "tem horário?"',
   'Clientes que somem ou desmarcam 30 minutos antes do atendimento',
-  'Agenda desorganizada sem pausa para higienizar pinças, maca ou almoçar',
-  'Clientes esquecendo a janela de manutenção (15 a 21 dias) e perdendo retenção',
+  'Agenda desorganizada, sem pausa para higienizar os materiais ou almoçar',
+  'Clientes demorando para voltar (manutenção, retoque, reaplicação) e perdendo retenção',
   'Dificuldade de controlar quanto faturou no final do mês',
 ];
 
-export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCaptured }) => {
+export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCaptured, onOpenTrial }) => {
   const [weeklyClients, setWeeklyClients] = useState<number>(18);
   const [dailyChatHours, setDailyChatHours] = useState<number>(2);
   const [monthlyNoShows, setMonthlyNoShows] = useState<number>(3);
@@ -69,12 +70,12 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
 
   const getWhatsAppShareLink = () => {
     return buildWhatsAppUrl(
-      `Olá! Fiz o diagnóstico da minha rotina de Lash Designer no ${BRAND.name}:\n` +
+      `Olá! Fiz o diagnóstico da minha rotina de profissional da beleza no ${BRAND.name}:\n` +
         `✨ Estúdio: ${studioName || designerName}\n` +
         `⏱️ Tempo gasto no WhatsApp: ${dailyChatHours}h/dia (${monthlyHoursWasted}h/mês)\n` +
         `💸 Prejuízo mensal com faltas: R$ ${monthlyMoneyLost},00\n` +
         `🎯 Maior dor: ${biggestPainPoint}\n` +
-        `🎟️ Cupom: ${BRAND.couponCode}\n\n` +
+        `🎁 Quero testar 7 dias grátis com a minha marca\n\n` +
         `Gostaria de ver uma demonstração com logo próprio e tirar dúvidas!`
     );
   };
@@ -109,33 +110,35 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
             {/* Question 1 */}
             <div className="space-y-2">
               <div className="flex justify-between items-center text-xs gap-2">
-                <label className="font-bold uppercase tracking-wider text-[#4E353F]">
-                  1. Quantas clientes de cílios você atende por semana?
+                <label htmlFor="q-clientes" className="font-bold uppercase tracking-wider text-[#4E353F]">
+                  1. Quantas clientes você atende por semana?
                 </label>
                 <span className="font-serif font-bold text-lg text-[#B83B66] tabular-nums shrink-0">
                   {weeklyClients} clientes
                 </span>
               </div>
               <input
+                id="q-clientes"
                 type="range"
                 min="5"
                 max="50"
                 step="1"
                 value={weeklyClients}
+                aria-valuetext={`${weeklyClients} clientes por semana`}
                 onChange={(e) => setWeeklyClients(Number(e.target.value))}
                 className="w-full accent-[#B83B66] cursor-pointer"
               />
               <div className="flex justify-between text-[11px] text-[#7D606B]">
                 <span>Iniciante (5/sem)</span>
                 <span>Agenda Cheia (25/sem)</span>
-                <span>Estúdio VIP (50+/sem)</span>
+                <span>Agenda lotada (50+/sem)</span>
               </div>
             </div>
 
             {/* Question 2 */}
             <div className="space-y-2">
               <div className="flex justify-between items-center text-xs gap-2">
-                <label className="font-bold uppercase tracking-wider text-[#4E353F]">
+                <label htmlFor="q-chat" className="font-bold uppercase tracking-wider text-[#4E353F]">
                   2. Quanto tempo você passa por dia no WhatsApp negociando horários?
                 </label>
                 <span className="font-serif font-bold text-lg text-[#B83B66] tabular-nums shrink-0">
@@ -143,11 +146,13 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
                 </span>
               </div>
               <input
+                id="q-chat"
                 type="range"
                 min="0.5"
                 max="4"
                 step="0.5"
                 value={dailyChatHours}
+                aria-valuetext={`${dailyChatHours} horas por dia`}
                 onChange={(e) => setDailyChatHours(Number(e.target.value))}
                 className="w-full accent-[#B83B66] cursor-pointer"
               />
@@ -161,7 +166,7 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
             {/* Question 3 */}
             <div className="space-y-2">
               <div className="flex justify-between items-center text-xs gap-2">
-                <label className="font-bold uppercase tracking-wider text-[#4E353F]">
+                <label htmlFor="q-faltas" className="font-bold uppercase tracking-wider text-[#4E353F]">
                   3. Quantas faltas ou cancelamentos em cima da hora acontecem por mês?
                 </label>
                 <span className="font-serif font-bold text-lg text-[#B3404A] tabular-nums shrink-0">
@@ -169,11 +174,13 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
                 </span>
               </div>
               <input
+                id="q-faltas"
                 type="range"
                 min="0"
                 max="10"
                 step="1"
                 value={monthlyNoShows}
+                aria-valuetext={`${monthlyNoShows} faltas por mês`}
                 onChange={(e) => setMonthlyNoShows(Number(e.target.value))}
                 className="w-full accent-[#B83B66] cursor-pointer"
               />
@@ -187,24 +194,26 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
             {/* Question 4 */}
             <div className="space-y-2">
               <div className="flex justify-between items-center text-xs gap-2">
-                <label className="font-bold uppercase tracking-wider text-[#4E353F]">
-                  4. Qual o valor médio do seu atendimento (Volume Russo, Fio a Fio ou Manutenção)?
+                <label htmlFor="q-ticket" className="font-bold uppercase tracking-wider text-[#4E353F]">
+                  4. Qual o valor médio do serviço que você mais faz?
                 </label>
-                <span className="font-serif font-bold text-lg text-[#5B8266] tabular-nums shrink-0">
+                <span className="font-serif font-bold text-lg text-[#3E7051] tabular-nums shrink-0">
                   R$ {averageTicket},00
                 </span>
               </div>
               <input
+                id="q-ticket"
                 type="range"
                 min="80"
                 max="350"
                 step="10"
                 value={averageTicket}
+                aria-valuetext={`${averageTicket} reais`}
                 onChange={(e) => setAverageTicket(Number(e.target.value))}
                 className="w-full accent-[#B83B66] cursor-pointer"
               />
               <div className="flex justify-between text-[11px] text-[#7D606B]">
-                <span>R$ 80 (manutenção)</span>
+                <span>R$ 80 (serviço rápido)</span>
                 <span>R$ 180 (médio padrão)</span>
                 <span>R$ 350 (alto padrão)</span>
               </div>
@@ -212,10 +221,10 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
 
             {/* Question 5 */}
             <div className="space-y-2 pt-2 border-t border-[#F2DCE4]">
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#4E353F]">
+              <span id="q-dor" className="block text-xs font-bold uppercase tracking-wider text-[#4E353F]">
                 5. Qual é o maior estresse na sua rotina hoje?
-              </label>
-              <div className="space-y-2">
+              </span>
+              <div className="space-y-2" role="radiogroup" aria-labelledby="q-dor">
                 {COMMON_PAINS.map((pain) => (
                   <label
                     key={pain}
@@ -230,7 +239,7 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
                       name="painPoint"
                       checked={biggestPainPoint === pain}
                       onChange={() => setBiggestPainPoint(pain)}
-                      className="mt-0.5 accent-[#B83B66]"
+                      className="mt-0.5 h-4 w-4 accent-[#B83B66]"
                     />
                     <span>{pain}</span>
                   </label>
@@ -267,7 +276,7 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
                   <span className="text-xs text-[#F7D6E2]">/ mês</span>
                 </div>
                 <p className="text-[11px] text-[#C6A9B4]">
-                  Equivale a <strong>{Math.round(monthlyHoursWasted / 2)} aplicações inteiras de cílios</strong> que você poderia estar faturando ou descansando com sua família.
+                  Equivale a <strong>{Math.round(monthlyHoursWasted / 2)} atendimentos inteiros</strong> que você poderia estar faturando ou descansando com sua família.
                 </p>
               </div>
 
@@ -313,35 +322,35 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
                       Quer resolver isso e testar com seu logotipo?
                     </h4>
                     <p className="text-xs text-[#6B4F59] mt-0.5">
-                      Deixe seu contato para receber o resumo no WhatsApp +{' '}
-                      <strong>50% de desconto no 1º mês</strong> de assinatura:
+                      Deixe seu contato para receber o resumo no WhatsApp e comece{' '}
+                      <strong>7 dias grátis</strong>, sem cartão:
                     </p>
                   </div>
 
                   <div className="space-y-3">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#6B4F59] mb-1">
+                        <label htmlFor="diag-nome" className="block text-[11px] font-bold uppercase tracking-wider text-[#6B4F59] mb-1">
                           Seu Nome *
                         </label>
                         <input
                           type="text"
                           required
-                          value={designerName}
+                          id="diag-nome" autoComplete="name" value={designerName}
                           onChange={(e) => setDesignerName(e.target.value)}
                           placeholder="Ex: Ana Paula"
                           className="w-full text-xs p-2.5 bg-[#FFF9FB] border border-[#EEDCE3] rounded-xl text-[#2D1B22] focus:ring-2 focus:ring-[#B83B66]/20 focus:border-[#B83B66] focus:outline-none"
                         />
                       </div>
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#6B4F59] mb-1">
+                        <label htmlFor="diag-studio" className="block text-[11px] font-bold uppercase tracking-wider text-[#6B4F59] mb-1">
                           Nome do Estúdio
                         </label>
                         <input
                           type="text"
-                          value={studioName}
+                          id="diag-studio" autoComplete="organization" value={studioName}
                           onChange={(e) => setStudioName(e.target.value)}
-                          placeholder="Ex: Studio Ana Lash"
+                          placeholder="Ex: Studio Ana Bela"
                           className="w-full text-xs p-2.5 bg-[#FFF9FB] border border-[#EEDCE3] rounded-xl text-[#2D1B22] focus:ring-2 focus:ring-[#B83B66]/20 focus:border-[#B83B66] focus:outline-none"
                         />
                       </div>
@@ -349,39 +358,39 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#6B4F59] mb-1">
+                        <label htmlFor="diag-whats" className="block text-[11px] font-bold uppercase tracking-wider text-[#6B4F59] mb-1">
                           WhatsApp com DDD *
                         </label>
                         <input
                           type="tel"
                           required
-                          value={whatsapp}
+                          id="diag-whats" autoComplete="tel" value={whatsapp}
                           onChange={(e) => setWhatsapp(e.target.value)}
                           placeholder="(31) 99220-0095"
                           className="w-full text-xs p-2.5 bg-[#FFF9FB] border border-[#EEDCE3] rounded-xl text-[#2D1B22] focus:ring-2 focus:ring-[#B83B66]/20 focus:border-[#B83B66] focus:outline-none"
                         />
                       </div>
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#6B4F59] mb-1">
+                        <label htmlFor="diag-insta" className="block text-[11px] font-bold uppercase tracking-wider text-[#6B4F59] mb-1">
                           Instagram do Estúdio
                         </label>
                         <input
                           type="text"
-                          value={instagram}
+                          id="diag-insta" autoComplete="off" value={instagram}
                           onChange={(e) => setInstagram(e.target.value)}
-                          placeholder="@studio.analash"
+                          placeholder="@studio.anabela"
                           className="w-full text-xs p-2.5 bg-[#FFF9FB] border border-[#EEDCE3] rounded-xl text-[#2D1B22] focus:ring-2 focus:ring-[#B83B66]/20 focus:border-[#B83B66] focus:outline-none"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-[#6B4F59] mb-1">
+                      <label htmlFor="diag-email" className="block text-[11px] font-bold uppercase tracking-wider text-[#6B4F59] mb-1">
                         E-mail
                       </label>
                       <input
                         type="email"
-                        value={email}
+                        id="diag-email" autoComplete="email" value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="ana@email.com"
                         className="w-full text-xs p-2.5 bg-[#FFF9FB] border border-[#EEDCE3] rounded-xl text-[#2D1B22] focus:ring-2 focus:ring-[#B83B66]/20 focus:border-[#B83B66] focus:outline-none"
@@ -398,12 +407,12 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
                   </button>
 
                   <p className="text-[10px] text-center text-[#7D606B]">
-                    Ao enviar, você autoriza o contato pelo WhatsApp sobre o LashCore. Prometemos zero spam, e você pode pedir a exclusão dos dados a qualquer momento.
+                    Ao enviar, você autoriza o contato pelo WhatsApp sobre o BelaCore. Prometemos zero spam, e você pode pedir a exclusão dos dados a qualquer momento.
                   </p>
                 </form>
               ) : (
-                <div className="text-center py-4 space-y-4">
-                  <div className="w-12 h-12 rounded-full bg-[#EBF4EE] text-[#5B8266] mx-auto flex items-center justify-center">
+                <div className="text-center py-4 space-y-4" role="status">
+                  <div className="w-12 h-12 rounded-full bg-[#EBF4EE] text-[#3E7051] mx-auto flex items-center justify-center">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <div>
@@ -423,26 +432,32 @@ export const RoutineDiagnostic: React.FC<RoutineDiagnosticProps> = ({ onLeadCapt
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#6B4F59]">Faturamento recuperável:</span>
-                      <strong className="text-[#5B8266] font-bold">
+                      <strong className="text-[#3E7051] font-bold">
                         R$ {monthlyMoneyLost.toLocaleString('pt-BR')},00/mês
                       </strong>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[#6B4F59]">Cupom de Lançamento:</span>
-                      <strong className="text-[#2D1B22] font-mono bg-white px-2 py-0.5 rounded border border-[#EEDCE3]">
-                        {BRAND.couponCode}
-                      </strong>
+                      <span className="text-[#6B4F59]">Para começar:</span>
+                      <strong className="text-[#2D1B22]">7 dias grátis, sem cartão</strong>
                     </div>
                   </div>
+
+                  <button
+                    type="button"
+                    onClick={onOpenTrial}
+                    className="w-full py-3 px-4 text-xs font-bold uppercase tracking-wider text-white bg-[#B83B66] hover:bg-[#962A50] rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm"
+                  >
+                    <span>Quero meus 7 dias grátis</span>
+                  </button>
 
                   <a
                     href={getWhatsAppShareLink()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-3 px-4 text-xs font-bold uppercase tracking-wider text-white bg-[#25D366] hover:bg-[#1EBE5D] rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm"
+                    className="w-full py-3 px-4 text-xs font-bold uppercase tracking-wider text-[#14532D] bg-[#BBF7D0] hover:bg-[#86EFAC] rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm"
                   >
                     <PhoneCall className="w-4 h-4" />
-                    <span>Enviar Resumo no WhatsApp Agora</span>
+                    <span>Enviar Resumo no WhatsApp Agora</span><span className="sr-only"> (abre em nova aba)</span>
                   </a>
 
                   <button

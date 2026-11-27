@@ -11,7 +11,7 @@ const STEPS = [
     number: '01',
     title: 'Você cadastra seus serviços',
     description:
-      'Adicione nome, preço, duração e foto de cada procedimento (Volume Russo, Fio a Fio, Brow Lamination) e defina seus horários de atendimento e folgas.',
+      'Adicione nome, preço, duração e foto de cada procedimento (cílios, unhas, sobrancelhas, cabelos...) e defina seus horários de atendimento e folgas.',
   },
   {
     number: '02',
@@ -32,8 +32,12 @@ export const AppVideoDemo: React.FC<AppVideoDemoProps> = ({ onOpenTrial }) => {
     <section id="demo" className="py-16 md:py-24 bg-[#FDF2F6] border-b border-[#F2DCE4]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left: Real App Video */}
+          {/* Left: App Video */}
           <div className="lg:col-span-5 flex justify-center">
+            <p id="demo-descricao" className="sr-only">
+              Vídeo sem som: mostra a agenda bagunçada no WhatsApp e como o app BelaCore resolve, com a cliente
+              agendando sozinha, o aviso de novo agendamento no celular, o aviso de retorno e a marca do studio.
+            </p>
             <div className="w-full max-w-[330px] bg-[#24131A] p-3 rounded-[40px] shadow-2xl border-4 border-[#4A2B37]">
               <div className="w-24 h-3.5 bg-[#24131A] rounded-b-xl mx-auto mb-1.5 flex items-center justify-center">
                 <div className="w-8 h-1 bg-[#4A2B37] rounded-full" />
@@ -46,6 +50,7 @@ export const AppVideoDemo: React.FC<AppVideoDemoProps> = ({ onOpenTrial }) => {
                   controls
                   playsInline
                   preload="metadata"
+                  aria-describedby="demo-descricao"
                 />
               </div>
             </div>
@@ -100,19 +105,19 @@ export const AppVideoDemo: React.FC<AppVideoDemoProps> = ({ onOpenTrial }) => {
 
               <a
                 href={buildWhatsAppUrl(
-                  'Oi! Vi o vídeo do LashCore App e quero saber mais sobre o agendamento para Lash Designers.'
+                  'Oi! Vi o vídeo do BelaCore App e quero saber mais sobre o agendamento para profissionais da beleza.'
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-[#2D1B22] bg-white hover:bg-[#FFF9FB] border border-[#EEDCE3] rounded-xl transition-all flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-4 h-4 text-[#25D366]" />
-                <span>Tirar Dúvidas no WhatsApp</span>
+                <span>Tirar Dúvidas no WhatsApp</span><span className="sr-only"> (abre em nova aba)</span>
               </a>
             </div>
 
             <div className="flex items-center gap-2 text-xs text-[#6B4F59]">
-              <CheckCircle2 className="w-4 h-4 text-[#5B8266] shrink-0" />
+              <CheckCircle2 className="w-4 h-4 text-[#3E7051] shrink-0" />
               <span>
                 No Plano Pro, nós fazemos a configuração inicial dos seus serviços, fotos e horários junto com você.
               </span>

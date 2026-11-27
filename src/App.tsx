@@ -22,7 +22,7 @@ const INITIAL_DEMO_LEADS: CapturedLead[] = [
     id: 'demo-1',
     createdAt: new Date(Date.now() - 3600000 * 4).toISOString(),
     designerName: 'Juliana Costa',
-    studioName: 'Ateliê Juliana Lash & Brow',
+    studioName: 'Ateliê Juliana Beleza',
     whatsapp: '(31) 98844-1234',
     instagram: '@julianalash.bh',
     email: 'juliana.lash@gmail.com',
@@ -38,7 +38,7 @@ const INITIAL_DEMO_LEADS: CapturedLead[] = [
     id: 'demo-2',
     createdAt: new Date(Date.now() - 3600000 * 24).toISOString(),
     designerName: 'Marcella Prado',
-    studioName: 'Studio Glam Lash',
+    studioName: 'Studio Glam',
     whatsapp: '(11) 99123-9988',
     instagram: '@marcellapradolash',
     email: 'marcellaprado@hotmail.com',
@@ -177,10 +177,16 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       <div className="min-h-screen bg-[#FFF9FB] text-[#2D1B22] flex flex-col font-sans pb-16 md:pb-0">
+        <a
+          href="#conteudo"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[100] focus:rounded-full focus:bg-[#93384F] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+        >
+          Pular para o conteúdo
+        </a>
         {/* Toast feedback notification */}
         {toastMessage && (
-          <div className="fixed top-20 md:top-24 right-4 z-50 bg-[#2B1820] text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-2.5 text-xs border border-[#4A2B37]">
-            <CheckCircle className="w-4 h-4 text-[#5B8266]" />
+          <div role="status" aria-live="polite" className="fixed top-20 md:top-24 right-4 z-50 bg-[#2B1820] text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-2.5 text-xs border border-[#4A2B37]">
+            <CheckCircle className="w-4 h-4 text-[#3E7051]" />
             <span>{toastMessage}</span>
           </div>
         )}
@@ -188,7 +194,7 @@ export default function App() {
         {/* Top Bar */}
         <Navbar onOpenDiagnostic={scrollToDiagnostic} onOpenTrial={openTrial} />
 
-        <main className="flex-1">
+        <main id="conteudo" tabIndex={-1} className="flex-1">
           {/* Hero Section with Real App Preview */}
           <Hero
             onOpenTrial={openTrial}
@@ -206,7 +212,7 @@ export default function App() {
           <WhiteLabelDemo onOpenTrial={openTrial} />
 
           {/* Interactive Routine Diagnostic Tool & Lead Capture */}
-          <RoutineDiagnostic onLeadCaptured={handleLeadCaptured} />
+          <RoutineDiagnostic onLeadCaptured={handleLeadCaptured} onOpenTrial={openTrial} />
 
           {/* Subscription Plans & Pricing Table */}
           <PricingSection onSelectPlan={openTrialPlan} />
@@ -235,11 +241,11 @@ export default function App() {
         {/* Floating WhatsApp Action Button */}
         <a
           href={buildWhatsAppUrl(
-            'Oi! Vi a página do LashCore App e quero saber mais sobre o sistema de agendamento com logo próprio para Lash Designers.'
+            'Oi! Vi a página do BelaCore App e quero saber mais sobre o sistema de agendamento com logo próprio para profissionais da beleza.'
           )}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Falar no WhatsApp"
+          aria-label="Falar no WhatsApp (abre em nova aba)"
           className="fixed bottom-3 right-3 md:bottom-6 md:right-6 z-40 h-11 w-11 md:h-auto md:w-auto md:p-3.5 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-full shadow-xl hover:shadow-2xl transition-all hover:scale-105 active:scale-95 flex items-center justify-center group"
         >
           <img

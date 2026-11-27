@@ -49,7 +49,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
               <button
                 type="button"
                 onClick={() => setBillingCycle('monthly')}
-                className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all whitespace-nowrap shrink-0 ${
+                aria-pressed={billingCycle === 'monthly'}
+                className={`min-h-11 px-4 py-2 text-xs font-semibold rounded-lg transition-all whitespace-nowrap shrink-0 ${
                   billingCycle === 'monthly'
                     ? 'bg-white text-[#2D1B22] shadow-xs'
                     : 'text-[#6B4F59] hover:text-[#2D1B22]'
@@ -60,7 +61,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
               <button
                 type="button"
                 onClick={() => setBillingCycle('annual')}
-                className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
+                aria-pressed={billingCycle === 'annual'}
+                className={`min-h-11 px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                   billingCycle === 'annual'
                     ? 'bg-[#B83B66] text-white shadow-xs'
                     : 'text-[#6B4F59] hover:text-[#2D1B22]'
@@ -85,7 +87,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                   key={plan.id}
                   type="button"
                   onClick={() => setActiveMobilePlanId(plan.id)}
-                  className={`relative py-2.5 px-2 rounded-xl text-xs font-semibold transition-colors whitespace-nowrap shrink-0 flex flex-col items-center justify-center ${
+                  aria-pressed={isSelected}
+                  className={`relative min-h-11 py-2.5 px-2 rounded-xl text-xs font-semibold transition-colors whitespace-nowrap shrink-0 flex flex-col items-center justify-center ${
                     isSelected
                       ? plan.popular
                         ? 'bg-[#2B1820] text-white shadow-md'
@@ -94,7 +97,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                   }`}
                 >
                   <span className="truncate max-w-full">
-                    {plan.id === 'solo' ? 'Essencial' : plan.id === 'pro' ? 'Pro' : 'Equipe'}
+                    {plan.id === 'solo' ? 'Essencial' : plan.id === 'pro' ? 'Pro' : 'Premium'}
                   </span>
                   <span
                     className={`text-[10px] tabular-nums ${
@@ -213,7 +216,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                                 ? activeMobilePlan.popular
                                   ? 'text-[#F7D6E2]'
                                   : 'text-[#B83B66]'
-                                : 'text-[#5B8266]'
+                                : 'text-[#3E7051]'
                             }`}
                           />
                           <span
@@ -366,7 +369,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                                   ? isPro
                                     ? 'text-[#F7D6E2]'
                                     : 'text-[#B83B66]'
-                                  : 'text-[#5B8266]'
+                                  : 'text-[#3E7051]'
                               }`}
                             />
                             <span
@@ -413,21 +416,21 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
         {/* Reassurance Strip */}
         <div className="pt-8 border-t border-[#F2DCE4] flex flex-wrap items-center justify-center gap-y-3 gap-x-8 text-xs text-[#6B4F59]">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-[#5B8266]" />
+            <ShieldCheck className="w-4 h-4 text-[#3E7051]" />
             <span>Sem fidelidade: cancele a assinatura quando quiser</span>
           </div>
           <span className="text-[#DEC5CE] hidden md:inline" aria-hidden="true">
             ·
           </span>
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-[#5B8266]" />
+            <ShieldCheck className="w-4 h-4 text-[#3E7051]" />
             <span>Zero taxas extras por agendamento ou cliente</span>
           </div>
           <span className="text-[#DEC5CE] hidden md:inline" aria-hidden="true">
             ·
           </span>
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-[#5B8266]" />
+            <ShieldCheck className="w-4 h-4 text-[#3E7051]" />
             <span>Suporte humanizado pelo WhatsApp na configuração do seu estúdio</span>
           </div>
         </div>

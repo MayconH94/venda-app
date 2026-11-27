@@ -1,4 +1,4 @@
-export interface LashService {
+export interface BeautyService {
   id: string;
   name: string;
   category: string;

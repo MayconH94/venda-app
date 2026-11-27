@@ -13,9 +13,14 @@ const FAQS = [
     answer: `No Plano Pro White-Label, basta enviar o seu logotipo (PNG ou JPEG) e escolher a paleta de cores que combina com a sua marca. A partir daí, sua cliente vê a sua identidade visual e agenda pelo seu link.`,
   },
   {
+    question: 'Serve para quais áreas da beleza?',
+    answer:
+      'Para quem atende uma cliente por vez, com hora marcada: cílios, unhas, sobrancelhas, cabelos, estética, maquiagem e outras. Você cadastra os seus próprios serviços, com preço, duração e foto. Cada conta é para uma profissional.',
+  },
+  {
     question: 'Posso bloquear dias, folgas e definir tempos diferentes por procedimento?',
     answer:
-      'Sim! Você define o expediente de cada dia da semana, pode fechar um dia inteiro ou bloquear algumas horas quando precisar, e configura durações reais para cada serviço (por exemplo: 2h para Volume Russo, 1h15 para Manutenção e 1h30 para Brow Lamination).',
+      'Sim! Você define o expediente de cada dia da semana, pode fechar um dia inteiro ou bloquear algumas horas quando precisar, e configura durações reais para cada serviço (por exemplo: 2h para um alongamento de cílios, 2h30 para unhas em gel e 45 min para um design de sobrancelhas).',
   },
   {
     question: 'Vocês cobram sinal Pix para evitar faltas?',
@@ -23,8 +28,8 @@ const FAQS = [
       'Ainda não. O sinal Pix está nos planos de lançamento e vai entrar no plano Premium. Enquanto isso, o botão de lembrete da agenda abre o WhatsApp com a mensagem pronta para a cliente confirmar o horário.',
   },
   {
-    question: 'Preciso ter CNPJ para assinar o LashCore?',
-    answer: `Não! O ${BRAND.name} foi pensado tanto para Lash Designers autônomas que atendem em casa ou sala alugada quanto para estúdios já estruturados com MEI ou CNPJ. Tudo o que você precisa é de um celular com WhatsApp.`,
+    question: 'Preciso ter CNPJ para assinar o BelaCore?',
+    answer: `Não! O ${BRAND.name} foi pensado tanto para profissionais autônomas que atendem em casa ou sala alugada quanto para estúdios já estruturados com MEI ou CNPJ. Tudo o que você precisa é de um celular com WhatsApp.`,
   },
   {
     question: 'Posso ver o sistema funcionando antes de contratar?',
@@ -52,7 +57,7 @@ export const FAQ: React.FC = () => {
             Perguntas Frequentes sobre o {BRAND.name}
           </h2>
           <p className="text-base text-[#6B4F59]">
-            Tudo o que você precisa saber para organizar o agendamento do seu estúdio de cílios:
+            Tudo o que você precisa saber para organizar o agendamento do seu studio de beleza:
           </p>
         </div>
 
@@ -67,7 +72,10 @@ export const FAQ: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => toggle(index)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 focus:outline-none"
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-resposta-${index}`}
+                  id={`faq-pergunta-${index}`}
+                  className="w-full min-h-11 p-5 sm:p-6 text-left flex items-center justify-between gap-4"
                 >
                   <span className="font-serif font-bold text-lg text-[#2D1B22]">
                     {faq.question}
@@ -80,7 +88,11 @@ export const FAQ: React.FC = () => {
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-[#6B4F59] leading-relaxed border-t border-[#F7E8EE] pt-4">
+                  <div
+                    id={`faq-resposta-${index}`}
+                    role="region"
+                    aria-labelledby={`faq-pergunta-${index}`}
+                    className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-[#6B4F59] leading-relaxed border-t border-[#F7E8EE] pt-4">
                     {faq.answer}
                   </div>
                 )}

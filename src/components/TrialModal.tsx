@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useModal } from '../lib/useModal';
 import { X, Crown, Check, ArrowRight, ShieldCheck, MessageCircle } from 'lucide-react';
 import { SubscriptionPlan, TrialFormData } from '../types';
 import { SUBSCRIPTION_PLANS } from '../data/plans';
@@ -36,6 +37,13 @@ export const TrialModal: React.FC<TrialModalProps> = ({
     }
   }, [isOpen, selectedPlan]);
 
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const doneRef = useRef<HTMLHeadingElement>(null);
+  useModal(dialogRef, isOpen, onClose);
+  useEffect(() => {
+    if (submitted) doneRef.current?.focus();
+  }, [submitted]);
+
   if (!isOpen) return null;
 
   const chosenPlan = SUBSCRIPTION_PLANS.find((p) => p.id === planChoice) || SUBSCRIPTION_PLANS[1];
@@ -69,7 +77,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-      <div className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-[#F2DCE4] overflow-hidden max-h-[90vh] flex flex-col">
+      <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="trial-titulo" tabIndex={-1} className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-[#F2DCE4] overflow-hidden max-h-[90vh] flex flex-col">
         {/* Header */}
         <div className="p-6 bg-[#FFF9FB] border-b border-[#F2DCE4] flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -77,7 +85,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({
               <Crown className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-serif font-bold text-xl text-[#2D1B22]">
+              <h3 id="trial-titulo" className="font-serif font-bold text-xl text-[#2D1B22]">
                 Comece seu Teste Grátis de 7 Dias
               </h3>
               <p className="text-[11px] text-[#6B4F59]">Sem cartão de crédito · Sem compromisso</p>
@@ -87,7 +95,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({
             type="button"
             onClick={onClose}
             aria-label="Fechar modal"
-            className="p-1.5 text-gray-400 hover:text-gray-700 rounded-lg focus:outline-none"
+            className="flex h-11 w-11 items-center justify-center text-[#6B4F59] hover:text-[#2D1B22] rounded-lg"
           >
             <X className="w-5 h-5" />
           </button>
@@ -106,13 +114,13 @@ export const TrialModal: React.FC<TrialModalProps> = ({
 
               <div className="space-y-3">
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-[#4E353F] mb-1">
+                  <label htmlFor="trial-nome" className="block text-xs font-bold uppercase tracking-wider text-[#4E353F] mb-1">
                     Seu Nome Completo *
                   </label>
                   <input
                     type="text"
                     required
-                    value={designerName}
+                    id="trial-nome" autoComplete="name" value={designerName}
                     onChange={(e) => setDesignerName(e.target.value)}
                     placeholder="Ex: Ana Paula Lima"
                     className="w-full text-xs p-3 bg-[#FFF9FB] border border-[#EEDCE3] rounded-xl text-[#2D1B22] focus:ring-2 focus:ring-[#B83B66]/20 focus:border-[#B83B66] focus:outline-none"
@@ -120,54 +128,54 @@ export const TrialModal: React.FC<TrialModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-[#4E353F] mb-1">
-                    Nome do seu Estúdio Lash *
+                  <label htmlFor="trial-studio" className="block text-xs font-bold uppercase tracking-wider text-[#4E353F] mb-1">
+                    Nome do seu studio *
                   </label>
                   <input
                     type="text"
                     required
-                    value={studioName}
+                    id="trial-studio" autoComplete="organization" value={studioName}
                     onChange={(e) => setStudioName(e.target.value)}
-                    placeholder="Ex: Studio Ana Lash"
+                    placeholder="Ex: Studio Ana Bela"
                     className="w-full text-xs p-3 bg-[#FFF9FB] border border-[#EEDCE3] rounded-xl text-[#2D1B22] focus:ring-2 focus:ring-[#B83B66]/20 focus:border-[#B83B66] focus:outline-none"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#4E353F] mb-1">
+                    <label htmlFor="trial-whats" className="block text-xs font-bold uppercase tracking-wider text-[#4E353F] mb-1">
                       WhatsApp com DDD *
                     </label>
                     <input
                       type="tel"
                       required
-                      value={whatsapp}
+                      id="trial-whats" autoComplete="tel" value={whatsapp}
                       onChange={(e) => setWhatsapp(e.target.value)}
                       placeholder="(31) 99220-0095"
                       className="w-full text-xs p-3 bg-[#FFF9FB] border border-[#EEDCE3] rounded-xl text-[#2D1B22] focus:ring-2 focus:ring-[#B83B66]/20 focus:border-[#B83B66] focus:outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#4E353F] mb-1">
+                    <label htmlFor="trial-insta" className="block text-xs font-bold uppercase tracking-wider text-[#4E353F] mb-1">
                       Instagram Profissional
                     </label>
                     <input
                       type="text"
-                      value={instagram}
+                      id="trial-insta" autoComplete="off" value={instagram}
                       onChange={(e) => setInstagram(e.target.value)}
-                      placeholder="@studio.analash"
+                      placeholder="@studio.anabela"
                       className="w-full text-xs p-3 bg-[#FFF9FB] border border-[#EEDCE3] rounded-xl text-[#2D1B22] focus:ring-2 focus:ring-[#B83B66]/20 focus:border-[#B83B66] focus:outline-none"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-[#4E353F] mb-1">
+                  <label htmlFor="trial-email" className="block text-xs font-bold uppercase tracking-wider text-[#4E353F] mb-1">
                     E-mail para Acesso
                   </label>
                   <input
                     type="email"
-                    value={email}
+                    id="trial-email" autoComplete="email" value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="ana@email.com"
                     className="w-full text-xs p-3 bg-[#FFF9FB] border border-[#EEDCE3] rounded-xl text-[#2D1B22] focus:ring-2 focus:ring-[#B83B66]/20 focus:border-[#B83B66] focus:outline-none"
@@ -181,7 +189,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({
                   required
                   checked={accepted}
                   onChange={(e) => setAccepted(e.target.checked)}
-                  className="mt-0.5 accent-[#B83B66]"
+                  className="mt-0.5 h-5 w-5 shrink-0 accent-[#B83B66]"
                 />
                 <span>
                   Autorizo o {BRAND.name} a entrar em contato pelo WhatsApp para liberar meu teste. Meus dados
@@ -201,7 +209,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({
               </div>
 
               <div className="flex items-center justify-center gap-2 text-[11px] text-[#7D606B] pt-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#5B8266]" />
+                <ShieldCheck className="w-3.5 h-3.5 text-[#3E7051]" />
                 <span>Retorno pelo WhatsApp para liberar seu acesso</span>
               </div>
             </form>
@@ -210,7 +218,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({
               <div className="w-14 h-14 rounded-full bg-[#EAF5EE] text-[#3E7051] mx-auto flex items-center justify-center">
                 <Check className="w-7 h-7 stroke-[3]" />
               </div>
-              <h4 className="font-serif font-bold text-2xl text-[#2D1B22]">
+              <h4 ref={doneRef} tabIndex={-1} className="font-serif font-bold text-2xl text-[#2D1B22]">
                 Pedido recebido, {designerName.split(' ')[0]}!
               </h4>
               <p className="text-xs text-[#6B4F59] leading-relaxed max-w-sm mx-auto">
@@ -224,10 +232,10 @@ export const TrialModal: React.FC<TrialModalProps> = ({
                   href={whatsappConfirmLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3.5 text-xs font-bold uppercase tracking-wider text-white bg-[#25D366] hover:bg-[#1EBE5D] rounded-xl flex items-center justify-center gap-2 transition-colors"
+                  className="w-full py-3.5 text-xs font-bold uppercase tracking-wider text-[#14532D] bg-[#BBF7D0] hover:bg-[#86EFAC] rounded-xl flex items-center justify-center gap-2 transition-colors"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  <span>Falar agora no WhatsApp</span>
+                  <span>Falar agora no WhatsApp</span><span className="sr-only"> (abre em nova aba)</span>
                 </a>
 
                 <button

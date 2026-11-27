@@ -26,7 +26,7 @@
   }
 }
 
-/* Custom subtle scrollbar matching LashCore palette */
+/* Custom subtle scrollbar matching BelaCore palette */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -49,4 +49,27 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Acessibilidade: foco visível e respeito à opção "reduzir movimento" */
+:focus-visible {
+  outline: 3px solid #93384f;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Acessibilidade: texto de exemplo nos campos com contraste suficiente */
+::placeholder {
+  color: #7D606B;
+  opacity: 1;
 }

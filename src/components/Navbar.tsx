@@ -25,7 +25,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDiagnostic, onOpenTrial })
         </a>
 
         {/* Zone 2: Clean single-line nav links */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[#6B4F59]">
+        <nav aria-label="Principal" className="hidden md:flex items-center gap-6 text-sm font-medium text-[#6B4F59]">
           <a href="#como-funciona" className="hover:text-[#2D1B22] transition-colors whitespace-nowrap shrink-0">
             Como Funciona
           </a>
@@ -63,8 +63,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDiagnostic, onOpenTrial })
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Abrir menu"
-            className="p-2 text-[#6B4F59] hover:text-[#2D1B22] focus:outline-none"
+            aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="menu-mobile"
+            className="flex h-11 w-11 items-center justify-center text-[#6B4F59] hover:text-[#2D1B22]"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -73,25 +75,25 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDiagnostic, onOpenTrial })
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-[#F2DCE4] bg-[#FFF9FB] px-4 pt-3 pb-6 space-y-3">
+        <nav id="menu-mobile" aria-label="Menu principal" className="md:hidden border-b border-[#F2DCE4] bg-[#FFF9FB] px-4 pt-3 pb-6 space-y-3">
           <a
             href="#como-funciona"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-medium text-[#6B4F59] hover:text-[#2D1B22] py-1.5"
+            className="block text-sm font-medium text-[#6B4F59] hover:text-[#2D1B22] py-3"
           >
             Como Funciona
           </a>
           <a
             href="#demo"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-medium text-[#6B4F59] hover:text-[#2D1B22] py-1.5"
+            className="block text-sm font-medium text-[#6B4F59] hover:text-[#2D1B22] py-3"
           >
             Veja o App em Ação (Vídeo)
           </a>
           <a
             href="#personalizador-marca"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-medium text-[#6B4F59] hover:text-[#2D1B22] py-1.5"
+            className="block text-sm font-medium text-[#6B4F59] hover:text-[#2D1B22] py-3"
           >
             Seu Logo & Cores (Simulador)
           </a>
@@ -101,21 +103,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDiagnostic, onOpenTrial })
               setMobileMenuOpen(false);
               onOpenDiagnostic();
             }}
-            className="block text-sm font-semibold text-[#B83B66] hover:text-[#962A50] py-1.5"
+            className="block text-sm font-semibold text-[#B83B66] hover:text-[#962A50] py-3"
           >
             Diagnóstico da Rotina
           </a>
           <a
             href="#planos"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-medium text-[#6B4F59] hover:text-[#2D1B22] py-1.5"
+            className="block text-sm font-medium text-[#6B4F59] hover:text-[#2D1B22] py-3"
           >
             Planos de Assinatura
           </a>
           <a
             href="#faq"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-medium text-[#6B4F59] hover:text-[#2D1B22] py-1.5"
+            className="block text-sm font-medium text-[#6B4F59] hover:text-[#2D1B22] py-3"
           >
             Perguntas Frequentes
           </a>
@@ -131,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDiagnostic, onOpenTrial })
               Testar 7 dias grátis
             </button>
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );

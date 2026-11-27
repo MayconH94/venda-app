@@ -12,7 +12,7 @@ import {
   ShieldCheck,
   CreditCard,
 } from 'lucide-react';
-import { LashService } from '../types';
+import { BeautyService } from '../types';
 import { BRAND, slugifyStudio } from '../config/brand';
 
 interface WhiteLabelDemoProps {
@@ -32,47 +32,48 @@ const PRESET_LOGOS = [
   { id: 'initials', label: 'Monograma' },
 ];
 
-const SAMPLE_SERVICES: LashService[] = [
+const SAMPLE_SERVICES: BeautyService[] = [
   {
     id: '1',
     name: 'Volume Russo',
     category: 'Cílios',
     duration: '2h 00min',
     price: 200,
-    description: 'Fans artesanais ultrafinos para um olhar marcante, leve e de alta retenção.',
+    description: 'Fios ultrafinos para um olhar marcante, leve e de alta retenção.',
     badge: 'Mais Pedido',
   },
   {
     id: '2',
-    name: 'Volume Brasileiro',
-    category: 'Cílios',
-    duration: '1h 45min',
-    price: 170,
-    description: 'Fios em formato Y que entregam efeito cheio com acabamento natural e elegante.',
+    name: 'Alongamento em Gel',
+    category: 'Unhas',
+    duration: '2h 30min',
+    price: 180,
+    description: 'Unhas mais longas e resistentes, com acabamento natural e brilho duradouro.',
   },
   {
     id: '3',
-    name: 'Manutenção de Cílios (15 a 21 dias)',
-    category: 'Manutenção',
-    duration: '1h 15min',
-    price: 110,
-    description: 'Higienização completa, remoção de fios crescidos e reposição do mapeamento.',
+    name: 'Design de Sobrancelhas',
+    category: 'Sobrancelhas',
+    duration: '45min',
+    price: 60,
+    description: 'Design personalizado para valorizar o formato do seu rosto.',
   },
   {
     id: '4',
-    name: 'Brow Lamination',
-    category: 'Sobrancelhas',
-    duration: '1h 30min',
-    price: 250,
-    description: 'Alinhamento e efeito volumoso com nutrição profunda dos fios naturais.',
+    name: 'Escova Modelada',
+    category: 'Cabelos',
+    duration: '1h 00min',
+    price: 80,
+    description: 'Cabelo alinhado e com movimento para o seu dia ou evento.',
   },
 ];
+
 
 const SAMPLE_DATES = ['Amanhã (Ter)', 'Quarta, 15', 'Quinta, 16'];
 const SAMPLE_HOURS = ['09:00', '11:30', '14:00', '16:30'];
 
 export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) => {
-  const [studioName, setStudioName] = useState('Studio Ana Lash');
+  const [studioName, setStudioName] = useState('Studio Ana Bela');
   const [selectedTheme, setSelectedTheme] = useState(COLOR_THEMES[0]);
   const [logoType, setLogoType] = useState<'preset' | 'custom'>('preset');
   const [presetLogo, setPresetLogo] = useState('initials');
@@ -81,7 +82,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
   const [depositAmount, setDepositAmount] = useState('30,00');
 
   // Client interactive booking simulation state
-  const [selectedService, setSelectedService] = useState<LashService>(SAMPLE_SERVICES[0]);
+  const [selectedService, setSelectedService] = useState<BeautyService>(SAMPLE_SERVICES[0]);
   const [selectedDate, setSelectedDate] = useState(SAMPLE_DATES[0]);
   const [selectedHour, setSelectedHour] = useState('14:00');
   const [bookingStep, setBookingStep] = useState<'service' | 'datetime' | 'confirmed'>('service');
@@ -114,7 +115,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
     if (parts.length >= 2) {
       return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
     }
-    return (name.trim().slice(0, 2) || 'LC').toUpperCase();
+    return (name.trim().slice(0, 2) || 'BC').toUpperCase();
   };
 
   return (
@@ -129,7 +130,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#2D1B22] tracking-tight leading-tight">
             Seu logo, suas cores e a sua autoridade. <br className="hidden sm:inline" />
             <span className="font-semibold italic text-[#B83B66]">
-              Zero menções genéricas ao sistema.
+              A cliente vê a sua marca do começo ao fim.
             </span>
           </h2>
           <p className="text-base text-[#6B4F59]">
@@ -167,7 +168,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
                 maxLength={35}
                 value={studioName}
                 onChange={(e) => setStudioName(e.target.value)}
-                placeholder="Ex: Studio Ana Lash"
+                placeholder="Ex: Studio Ana Bela"
                 className="w-full px-4 py-2.5 bg-white border border-[#EEDCE3] rounded-xl text-sm font-medium text-[#2D1B22] focus:outline-none focus:ring-2 focus:ring-[#B83B66]/20 focus:border-[#B83B66]"
               />
               <p className="text-[11px] text-[#7D606B] flex items-center gap-1">
@@ -192,6 +193,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
                       key={theme.id}
                       type="button"
                       onClick={() => setSelectedTheme(theme)}
+                      aria-pressed={isSelected}
                       className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 ${
                         isSelected
                           ? 'border-[#B83B66] bg-white shadow-sm ring-2 ring-[#B83B66]/20'
@@ -221,12 +223,12 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
               </span>
 
               <div className="flex flex-col sm:flex-row gap-3">
-                <label className="flex-1 cursor-pointer p-3.5 bg-white border border-dashed border-[#DFB9C7] hover:border-[#B83B66] rounded-xl flex items-center gap-3 transition-colors">
+                <label className="flex-1 cursor-pointer p-3.5 bg-white border border-dashed focus-within:ring-2 focus-within:ring-[#93384F] border-[#DFB9C7] hover:border-[#B83B66] rounded-xl flex items-center gap-3 transition-colors">
                   <input
                     type="file"
                     accept="image/*"
                     onChange={handleLogoUpload}
-                    className="hidden"
+                    className="sr-only"
                   />
                   <div className="w-10 h-10 rounded-lg bg-[#FDF2F6] border border-[#F2DCE4] flex items-center justify-center text-[#B83B66] shrink-0">
                     {customLogoUrl ? (
@@ -254,6 +256,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
                           setLogoType('preset');
                           setPresetLogo(preset.id);
                         }}
+                        aria-pressed={isSelected}
                         className={`flex-1 py-2 text-[11px] font-medium rounded-lg text-center transition-all ${
                           isSelected
                             ? 'bg-[#B83B66] text-white shadow-xs font-semibold'
@@ -323,6 +326,9 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
 
               {/* Smartphone Inner Screen */}
               <div
+                role="region"
+                aria-label="Simulação da tela de agendamento da cliente"
+                tabIndex={0}
                 className="rounded-[32px] overflow-hidden min-h-[580px] max-h-[620px] overflow-y-auto flex flex-col justify-between"
                 style={{ backgroundColor: selectedTheme.bg }}
               >
@@ -352,20 +358,17 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
                         style={{ backgroundColor: selectedTheme.primary }}
                       >
                         {presetLogo === 'initials' && getInitials(studioName)}
-                        {presetLogo === 'sparkle' && '✦'}
-                        {presetLogo === 'lotus' && '❀'}
-                        {presetLogo === 'modern' && 'L'}
                       </div>
                     )}
                   </div>
 
                   <h4 className="font-serif font-bold text-base text-[#1E1B18] tracking-tight truncate">
-                    {studioName.trim() || 'Seu Estúdio Lash'}
+                    {studioName.trim() || 'Seu Studio'}
                   </h4>
-                  <p className="text-[11px] text-[#786C62] flex items-center justify-center gap-1 mt-0.5">
-                    <span>Lash Designer Especialista</span>
+                  <p className="text-[11px] text-[#6B6056] flex items-center justify-center gap-1 mt-0.5">
+                    <span>Profissional de beleza</span>
                     <span>·</span>
-                    <span className="font-medium text-[#5B8266]">Agenda Aberta</span>
+                    <span className="font-medium text-[#3E7051]">Agenda Aberta</span>
                   </p>
 
                   <div
@@ -373,7 +376,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
                     style={{ backgroundColor: selectedTheme.accent, color: selectedTheme.primary }}
                   >
                     <ShieldCheck className="w-3 h-3" />
-                    <span>Agendamento Oficial e Seguro</span>
+                    <span>Agenda online</span>
                   </div>
                 </div>
 
@@ -397,6 +400,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
                             key={service.id}
                             type="button"
                             onClick={() => setSelectedService(service)}
+                            aria-pressed={isChosen}
                             className={`w-full text-left p-3 rounded-xl border cursor-pointer transition-all ${
                               isChosen
                                 ? 'bg-white shadow-sm ring-1'
@@ -468,7 +472,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
                         <button
                           type="button"
                           onClick={() => setBookingStep('service')}
-                          className="text-[11px] font-medium text-[#7C6E64] hover:underline"
+                          className="text-[11px] font-medium text-[#6B6056] hover:underline"
                         >
                           ← Voltar aos Serviços
                         </button>
@@ -490,6 +494,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
                                 key={dateLabel}
                                 type="button"
                                 onClick={() => setSelectedDate(dateLabel)}
+                                aria-pressed={isSelected}
                                 className="py-2 px-1 rounded-lg text-[10px] font-semibold border transition-all"
                                 style={
                                   isSelected
@@ -525,6 +530,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
                                 key={h}
                                 type="button"
                                 onClick={() => setSelectedHour(h)}
+                                aria-pressed={isSelected}
                                 className="py-2 rounded-lg text-xs font-bold border transition-all"
                                 style={
                                   isSelected
@@ -553,6 +559,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
                         <input
                           type="text"
                           placeholder="Seu nome completo"
+                          aria-label="Nome da cliente (simulação)"
                           value={clientName}
                           onChange={(e) => setClientName(e.target.value)}
                           className="w-full text-xs p-2 bg-[#F9F7F5] border border-gray-200 rounded-lg focus:outline-none"
@@ -560,6 +567,7 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
                         <input
                           type="tel"
                           placeholder="WhatsApp com DDD (ex: 31 99220-0095)"
+                          aria-label="WhatsApp da cliente (simulação)"
                           value={clientWhatsapp}
                           onChange={(e) => setClientWhatsapp(e.target.value)}
                           className="w-full text-xs p-2 bg-[#F9F7F5] border border-gray-200 rounded-lg focus:outline-none"
@@ -620,14 +628,14 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
                             R$ {selectedService.price.toFixed(2).replace('.', ',')}
                           </span>
                         </div>
-                        <div className="flex justify-between text-[#5B8266] pt-1 border-t border-[#E8DFD8]">
-                          <span>WhatsApp:</span>
-                          <span className="font-semibold">Lembrete Programado</span>
+                        <div className="flex justify-between text-[#3E7051] pt-1 border-t border-[#E8DFD8]">
+                          <span>Na sua agenda:</span>
+                          <span className="font-semibold">Agendamento recebido</span>
                         </div>
                       </div>
 
-                      <p className="text-[10px] text-[#8C7B70]">
-                        *Sua cliente recebe a localização, orientações de pré-atendimento (vir sem rímel) e lembrete de retorno para manutenção.
+                      <p className="text-[10px] text-[#6B6056]">
+                        *Simulação. No app de verdade, o agendamento aparece na sua agenda e você chama a cliente no WhatsApp com a mensagem pronta, em 1 toque.
                       </p>
 
                       <button
@@ -645,8 +653,8 @@ export const WhiteLabelDemo: React.FC<WhiteLabelDemoProps> = ({ onOpenTrial }) =
 
                 {/* Footer of the smartphone */}
                 <div className="p-3 bg-white border-t border-gray-100 text-center">
-                  <span className="text-[10px] text-gray-400">
-                    Agendamento oficial · {studioName.trim() || 'Seu Estúdio Lash'}
+                  <span className="text-[11px] text-[#6B6056]">
+                    Agendamento oficial · {studioName.trim() || 'Seu Studio'}
                   </span>
                 </div>
               </div>

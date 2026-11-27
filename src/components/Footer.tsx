@@ -18,7 +18,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, leadsCount }) => {
               {BRAND.name}
             </span>
             <p className="text-xs text-[#C6A9B4] max-w-md leading-relaxed">
-              O sistema de agendamento online e gestão white-label desenvolvido exclusivamente para valorizar a marca e a rotina das Lash Designers brasileiras.
+              O sistema de agendamento online e gestão white-label desenvolvido exclusivamente para valorizar a marca e a rotina das profissionais da beleza brasileiras.
             </p>
             <div className="pt-1 text-[11px] text-[#DFC4CE]">
               <strong className="text-white">{BRAND.name}</strong> · {BRAND.creatorCredit}
@@ -74,14 +74,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, leadsCount }) => {
             </p>
             <a
               href={buildWhatsAppUrl(
-                'Oi! Quero saber mais sobre o LashCore App de agendamento para Lash Designers.'
+                'Oi! Quero saber mais sobre o BelaCore App de agendamento para profissionais da beleza.'
               )}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-xs font-semibold text-[#F7D6E2] hover:text-white transition-colors pt-1"
             >
               <MessageCircle className="w-4 h-4 text-[#25D366]" />
-              <span>Chamar no WhatsApp Oficial</span>
+              <span>Chamar no WhatsApp Oficial</span><span className="sr-only"> (abre em nova aba)</span>
             </a>
           </div>
         </div>
@@ -92,7 +92,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, leadsCount }) => {
             <div>
               © {new Date().getFullYear()} {BRAND.name} · Todos os direitos reservados.
             </div>
-            <div className="text-[11px] text-[#A88693]/80">
+            <div className="text-[11px] text-[#C6A9B4]">
               Usamos seu nome e telefone apenas para falar com você sobre o {BRAND.name}. Não vendemos nem
               compartilhamos seus dados. Para apagar os seus dados, é só pedir pelo WhatsApp.
             </div>
@@ -101,7 +101,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, leadsCount }) => {
           <button
             type="button"
             onClick={onOpenAdmin}
-            className="flex items-center gap-1.5 text-[11px] text-[#DFC4CE] hover:text-white bg-[#331B24] px-3 py-1.5 rounded-lg border border-[#4A2B37] transition-colors"
+            className="flex items-center gap-1.5 min-h-11 text-[11px] text-[#DFC4CE] hover:text-white bg-[#331B24] px-3 py-1.5 rounded-lg border border-[#4A2B37] transition-colors"
           >
             <Database className="w-3.5 h-3.5 text-[#E99BB3]" />
             <span>Ver Informações Coletadas ({leadsCount} leads)</span>

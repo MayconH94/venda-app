@@ -23,10 +23,10 @@ export const PainPointsAndSolutions: React.FC<PainPointsProps> = ({ onOpenTrial 
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="flex items-center justify-center gap-2 text-xs font-semibold tracking-wider uppercase text-[#B83B66]">
             <Eye className="w-4 h-4 text-[#B83B66]" />
-            <span>Feito para a rotina de maca e pinça</span>
+            <span>Feito para quem atende com hora marcada</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#2D1B22] tracking-tight leading-tight">
-            Você se especializou para ser Lash Designer, <br className="hidden sm:inline" />
+            Você se especializou na sua profissão, <br className="hidden sm:inline" />
             <span className="font-semibold italic text-[#B83B66]">
               não para ser recepcionista 24 horas por dia.
             </span>
@@ -60,31 +60,31 @@ export const PainPointsAndSolutions: React.FC<PainPointsProps> = ({ onOpenTrial 
               <li className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#B3404A] mt-2 shrink-0" />
                 <span>
-                  <strong>Prejuízo do "bolo":</strong> A cliente falta na aplicação de Volume Russo de 2h, você fica com a maca parada e sem conseguir encaixar outra pessoa.
+                  <strong>Prejuízo do "bolo":</strong> A cliente falta num atendimento de 2 horas, você fica com a cadeira parada e sem conseguir encaixar outra pessoa.
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#B3404A] mt-2 shrink-0" />
                 <span>
-                  <strong>Interromper o atendimento:</strong> Celular tocando sem parar enquanto você precisa de foco total no isolamento dos fios.
+                  <strong>Interromper o atendimento:</strong> Celular tocando sem parar enquanto você precisa de foco total na cliente que está na sua frente.
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#B3404A] mt-2 shrink-0" />
                 <span>
-                  <strong>Clientes que passam do prazo da manutenção:</strong> Sem lembrete de 15 a 21 dias, a cliente volta com menos de 30% dos fios esperando preço de manutenção.
+                  <strong>Clientes que demoram para voltar:</strong> Sem um aviso na hora certa, a manutenção, o retoque ou a reaplicação ficam para depois, e você perde a recorrência.
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#B3404A] mt-2 shrink-0" />
                 <span>
-                  <strong>Sem pausa para almoço ou higienização:</strong> Atendimentos encavalados sem intervalo para esterilizar pinças, trocar o lençol e descansar as costas.
+                  <strong>Sem pausa para almoço ou higienização:</strong> Atendimentos encavalados sem intervalo para higienizar os materiais, arrumar a bancada e descansar.
                 </span>
               </li>
             </ul>
           </div>
 
-          {/* Card: Rotina com LashCore (Solução) */}
+          {/* Card: Rotina com BelaCore (Solução) */}
           <div className="bg-white p-7 sm:p-9 rounded-2xl border border-[#C5DDD0] shadow-sm space-y-6 relative overflow-hidden">
             <div className="flex items-center justify-between border-b border-[#D5EADB] pb-4">
               <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-[#3E7051]">
@@ -118,7 +118,7 @@ export const PainPointsAndSolutions: React.FC<PainPointsProps> = ({ onOpenTrial 
               <li className="flex items-start gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#3E7051] mt-2 shrink-0" />
                 <span>
-                  <strong>Alerta Inteligente de Retorno:</strong> O app mostra quem chegou na janela de 15 a 21 dias da manutenção e deixa a mensagem pronta com 1 toque.
+                  <strong>Alerta de Retorno:</strong> Você define o prazo de cada serviço, o app mostra quem já está na hora de voltar e deixa a mensagem pronta com 1 toque.
                 </span>
               </li>
               <li className="flex items-start gap-3">
@@ -166,28 +166,28 @@ export const PainPointsAndSolutions: React.FC<PainPointsProps> = ({ onOpenTrial 
                 Tempos Reais por Procedimento
               </h3>
               <p className="text-xs text-[#6B4F59] leading-relaxed">
-                Aplicação de Volume Russo não tem a mesma duração de uma manutenção ou Brow Lamination. Configure fotos, preços e durações reais para cada serviço.
+                Um alongamento não leva o mesmo tempo que uma manutenção ou um design de sobrancelhas. Configure fotos, preços e durações reais para cada serviço.
               </p>
             </div>
             <div className="px-6 pb-6 pt-0 space-y-2">
               <div className="p-3 bg-[#FDF2F6] rounded-xl border border-[#F2DCE4] space-y-2 text-[11px]">
                 <div className="flex items-center justify-between">
                   <span className="font-semibold text-[#2D1B22] flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-[#B83B66]" /> Volume Russo
+                    <Clock className="w-3.5 h-3.5 text-[#B83B66]" /> Cílios · Volume
                   </span>
                   <span className="text-[#6B4F59] font-mono">2h 00min · R$ 200</span>
                 </div>
                 <div className="flex items-center justify-between border-t border-[#F2DCE4] pt-1.5">
                   <span className="font-semibold text-[#2D1B22] flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-[#B83B66]" /> Manutenção (21 dias)
+                    <Clock className="w-3.5 h-3.5 text-[#B83B66]" /> Unhas · Alongamento em gel
                   </span>
-                  <span className="text-[#6B4F59] font-mono">1h 15min · R$ 110</span>
+                  <span className="text-[#6B4F59] font-mono">2h 30min · R$ 180</span>
                 </div>
                 <div className="flex items-center justify-between border-t border-[#F2DCE4] pt-1.5">
                   <span className="font-semibold text-[#2D1B22] flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-[#B83B66]" /> Brow Lamination
+                    <Clock className="w-3.5 h-3.5 text-[#B83B66]" /> Sobrancelhas · Design
                   </span>
-                  <span className="text-[#6B4F59] font-mono">1h 30min · R$ 250</span>
+                  <span className="text-[#6B4F59] font-mono">45min · R$ 60</span>
                 </div>
               </div>
             </div>
@@ -213,12 +213,12 @@ export const PainPointsAndSolutions: React.FC<PainPointsProps> = ({ onOpenTrial 
                   <span>100% otimizado para o celular</span>
                 </div>
                 <div className="flex items-center gap-2 text-[#2D1B22] font-medium">
-                  <CalendarCheck className="w-4 h-4 text-[#5B8266] shrink-0" />
+                  <CalendarCheck className="w-4 h-4 text-[#3E7051] shrink-0" />
                   <span>Expediente semanal e bloqueio de folgas</span>
                 </div>
                 <div className="flex items-center gap-2 text-[#2D1B22] font-medium">
                   <BellRing className="w-4 h-4 text-[#B83B66] shrink-0" />
-                  <span>Alerta de clientes na hora da manutenção</span>
+                  <span>Alerta de clientes na hora de voltar</span>
                 </div>
               </div>
             </div>

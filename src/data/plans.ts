@@ -13,7 +13,7 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
       'Catálogo de serviços com fotos, preços e duração',
       'Controle de expediente da semana e bloqueio de folgas',
       'Agenda do dia com cancelamento',
-      'Lembrete de retorno para manutenção de cílios',
+      'Lembrete de retorno para manutenção',
       'Botão de lembrete: abre o WhatsApp com a mensagem pronta',
       'Suporte pelo WhatsApp em horário comercial',
     ],

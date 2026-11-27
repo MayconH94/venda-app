@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { useModal } from '../lib/useModal';
 import { X, Check, Crown, ArrowRight, Gem } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SubscriptionPlan } from '../types';
@@ -20,6 +21,8 @@ export const MobilePlansSheet: React.FC<MobilePlansSheetProps> = ({
 }) => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('annual');
   const [activePlanId, setActivePlanId] = useState<string>('pro');
+  const sheetRef = useRef<HTMLDivElement>(null);
+  useModal(sheetRef, isOpen, onClose);
 
   const activePlan =
     SUBSCRIPTION_PLANS.find((p) => p.id === activePlanId) || SUBSCRIPTION_PLANS[1];
@@ -42,6 +45,8 @@ export const MobilePlansSheet: React.FC<MobilePlansSheetProps> = ({
 
           {/* Spring Pop-Up Sheet */}
           <motion.div
+            ref={sheetRef}
+            tabIndex={-1}
             role="dialog"
             aria-modal="true"
             aria-label={`Planos de Assinatura ${BRAND.name}`}
@@ -78,7 +83,7 @@ export const MobilePlansSheet: React.FC<MobilePlansSheetProps> = ({
                 type="button"
                 onClick={onClose}
                 aria-label="Fechar planos"
-                className="p-2 text-[#6B4F59] hover:text-[#2D1B22] rounded-xl hover:bg-[#FDF2F6] transition-colors"
+                className="flex h-11 w-11 items-center justify-center text-[#6B4F59] hover:text-[#2D1B22] rounded-xl hover:bg-[#FDF2F6] transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -90,7 +95,8 @@ export const MobilePlansSheet: React.FC<MobilePlansSheetProps> = ({
                 <button
                   type="button"
                   onClick={() => setBillingCycle('monthly')}
-                  className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all ${
+                  aria-pressed={billingCycle === 'monthly'}
+                  className={`flex-1 min-h-11 py-1.5 text-xs font-semibold rounded-lg transition-all ${
                     billingCycle === 'monthly'
                       ? 'bg-white text-[#2D1B22] shadow-xs'
                       : 'text-[#6B4F59]'
@@ -101,7 +107,8 @@ export const MobilePlansSheet: React.FC<MobilePlansSheetProps> = ({
                 <button
                   type="button"
                   onClick={() => setBillingCycle('annual')}
-                  className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all flex items-center justify-center gap-1.5 ${
+                  aria-pressed={billingCycle === 'annual'}
+                  className={`flex-1 min-h-11 py-1.5 text-xs font-semibold rounded-lg transition-all flex items-center justify-center gap-1.5 ${
                     billingCycle === 'annual'
                       ? 'bg-[#B83B66] text-white shadow-xs'
                       : 'text-[#6B4F59]'
@@ -123,7 +130,8 @@ export const MobilePlansSheet: React.FC<MobilePlansSheetProps> = ({
                       key={plan.id}
                       type="button"
                       onClick={() => setActivePlanId(plan.id)}
-                      className={`py-2 px-2 rounded-xl text-xs font-semibold border transition-all text-center ${
+                      aria-pressed={isActive}
+                      className={`min-h-11 py-2 px-2 rounded-xl text-xs font-semibold border transition-all text-center ${
                         isActive
                           ? plan.popular
                             ? 'bg-[#2B1820] text-white border-[#B83B66] shadow-sm'
@@ -131,7 +139,7 @@ export const MobilePlansSheet: React.FC<MobilePlansSheetProps> = ({
                           : 'bg-white/70 text-[#6B4F59] border-[#F2DCE4]'
                       }`}
                     >
-                      {plan.id === 'solo' ? 'Essencial' : plan.id === 'pro' ? 'Pro' : 'Equipe'}
+                      {plan.id === 'solo' ? 'Essencial' : plan.id === 'pro' ? 'Pro' : 'Premium'}
                     </button>
                   );
                 })}
@@ -198,7 +206,7 @@ export const MobilePlansSheet: React.FC<MobilePlansSheetProps> = ({
                                 ? activePlan.popular
                                   ? 'text-[#F7D6E2]'
                                   : 'text-[#B83B66]'
-                                : 'text-[#5B8266]'
+                                : 'text-[#3E7051]'
                             }`}
                           />
                           <span

@@ -26,7 +26,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTrial, onOpenDiagnostic, onOpe
           <div className="lg:col-span-7 space-y-7">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#F2DCE4] shadow-2xs text-[11px] font-semibold tracking-wider uppercase text-[#B83B66]">
               <Eye className="w-3.5 h-3.5 text-[#B83B66]" />
-              <span>Sistema White-Label Exclusivo para Lash Designers</span>
+              <span>Sistema White-Label para Profissionais da Beleza</span>
             </div>
 
             <h1
@@ -40,6 +40,17 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTrial, onOpenDiagnostic, onOpe
             <p className="text-base sm:text-lg text-[#6B4F59] leading-relaxed max-w-2xl">
               Um app por assinatura com o seu link para a bio do Instagram, seu logotipo e suas cores. Sua cliente escolhe o procedimento e o horário livre em segundos — sem instalar nada — e você só atende.
             </p>
+
+            <ul className="flex flex-wrap items-center gap-2" aria-label="Áreas atendidas">
+              {['Cílios', 'Unhas', 'Sobrancelhas', 'Cabelos', 'Estética'].map((area) => (
+                <li
+                  key={area}
+                  className="px-3 py-1 rounded-full bg-white border border-[#F2DCE4] text-xs font-semibold text-[#962A50]"
+                >
+                  {area}
+                </li>
+              ))}
+            </ul>
 
             {/* Action Buttons */}
             <div className="pt-2 space-y-3">
@@ -86,34 +97,34 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTrial, onOpenDiagnostic, onOpe
             {/* Micro-trust proof points */}
             <div className="pt-2 flex flex-wrap items-center gap-y-2 gap-x-5 text-xs text-[#6B4F59]">
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#5B8266]" />
+                <CheckCircle2 className="w-4 h-4 text-[#3E7051]" />
                 <span>Funciona direto do celular</span>
               </div>
               <span className="text-[#DEC5CE] hidden sm:inline" aria-hidden="true">
                 ·
               </span>
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#5B8266]" />
+                <CheckCircle2 className="w-4 h-4 text-[#3E7051]" />
                 <span>Sem instalar nada</span>
               </div>
               <span className="text-[#DEC5CE] hidden sm:inline" aria-hidden="true">
                 ·
               </span>
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#5B8266]" />
+                <CheckCircle2 className="w-4 h-4 text-[#3E7051]" />
                 <span>Link para bio do Instagram</span>
               </div>
               <span className="text-[#DEC5CE] hidden sm:inline" aria-hidden="true">
                 ·
               </span>
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#5B8266]" />
+                <CheckCircle2 className="w-4 h-4 text-[#3E7051]" />
                 <span>Sem necessidade de CNPJ</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Real LashCore Mobile App Mockup */}
+          {/* Right Column: Real BelaCore Mobile App Mockup */}
           <div className="lg:col-span-5 relative flex justify-center">
             <div className="relative w-full max-w-[330px]">
               {/* Smartphone Bezel with Real App Screenshot */}
@@ -124,8 +135,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTrial, onOpenDiagnostic, onOpe
 
                 <div className="rounded-[28px] overflow-hidden bg-[#FDF2F5] relative">
                   <img
-                    src="/assets/app-tela.png"
-                    alt="Tela real de agendamento do app LashCore para Lash Designers no celular"
+                    src="/assets/app-tela-2.png"
+                    alt="Tela de agendamento do app BelaCore no celular, com o logotipo e as cores do studio e serviços de cílios, unhas, sobrancelhas e cabelos"
                     className="w-full h-auto block object-cover"
                   />
                 </div>
@@ -133,12 +144,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTrial, onOpenDiagnostic, onOpe
 
               {/* Floating New Booking Notification */}
               <div className="hidden sm:flex absolute -top-4 -left-10 bg-white rounded-xl p-3 shadow-xl border border-[#F2DCE4] items-center gap-3 animate-bounce [animation-duration:3s]">
-                <div className="w-8 h-8 rounded-full bg-[#EBF4EE] flex items-center justify-center text-[#5B8266] shrink-0">
+                <div className="w-8 h-8 rounded-full bg-[#EBF4EE] flex items-center justify-center text-[#3E7051] shrink-0">
                   <CheckCircle2 className="w-5 h-5" />
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-[#2D1B22]">Novo agendamento recebido!</p>
-                  <p className="text-[10px] text-[#7D606B]">Volume Russo · R$ 200,00</p>
+                  <p className="text-[11px] text-[#7D606B]">Unha Balone · R$ 150,00</p>
                 </div>
               </div>
 
@@ -150,7 +161,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTrial, onOpenDiagnostic, onOpe
                       SA
                     </div>
                     <div>
-                      <div className="text-xs font-bold text-[#2D1B22]">Studio Ana Lash</div>
+                      <div className="text-xs font-bold text-[#2D1B22]">Studio Ana Bela</div>
                       <div className="text-[10px] text-[#7D606B] font-mono">Seu link na bio</div>
                     </div>
                   </div>
