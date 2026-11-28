@@ -26,7 +26,7 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   {
     id: 'pro',
     name: 'Pro White-Label',
-    tagline: 'Seu logotipo, suas cores e avisos de novos agendamentos no celular.',
+    tagline: 'Seu logotipo, suas cores, avisos no celular e sinal Pix contra faltas.',
     popular: true,
     priceMonthly: 69.9,
     priceAnnualMonthly: 55.9,
@@ -35,6 +35,7 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
       'Tudo do plano Essencial',
       '★ SEU LOGOTIPO, NOME E CORES NA PÁGINA DE AGENDAMENTO',
       '★ Avisos de novos agendamentos direto no seu celular',
+      '★ Sinal Pix: o horário só é confirmado após o pagamento (em breve)',
       '★ Configuração inicial feita por nós (serviços, fotos e horários)',
       'Agendamentos 100% ilimitados',
       'Suporte prioritário via WhatsApp',
@@ -50,7 +51,7 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
     features: [
       'Tudo do plano Pro White-Label incluído',
       'Lembretes automáticos no WhatsApp para as clientes (em breve)',
-      'Sinal Pix para reduzir faltas (em breve)',
+      'Sistema de assinaturas para as suas clientes (em breve)',
       'Suporte prioritário exclusivo',
     ],
     ctaText: 'Quero entrar na lista do Premium',

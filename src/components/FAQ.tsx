@@ -25,7 +25,7 @@ const FAQS = [
   {
     question: 'Vocês cobram sinal Pix para evitar faltas?',
     answer:
-      'Ainda não. O sinal Pix está nos planos de lançamento e vai entrar no plano Premium. Enquanto isso, o botão de lembrete da agenda abre o WhatsApp com a mensagem pronta para a cliente confirmar o horário.',
+      'Ainda não, mas está a caminho no plano Pro White-Label: a cliente escolhe o dia e o horário e o horário só é confirmado depois do pagamento do sinal por Pix. Enquanto isso, o botão de lembrete da agenda abre o WhatsApp com a mensagem pronta para a cliente confirmar o horário.',
   },
   {
     question: 'Preciso ter CNPJ para assinar o BelaCore?',
