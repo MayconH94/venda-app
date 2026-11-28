@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Check, Gem, ShieldCheck, ArrowRight, Crown } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SubscriptionPlan } from '../types';
-import { SUBSCRIPTION_PLANS } from '../data/plans';
+import { SUBSCRIPTION_PLANS, ANNUAL_BILLING_ENABLED } from '../data/plans';
 
 interface PricingSectionProps {
   onSelectPlan: (plan: SubscriptionPlan, cycle: 'monthly' | 'annual') => void;
@@ -43,7 +43,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
             Sem surpresas e sem taxas por agendamento. Veja a demonstração ao vivo, com a sua marca, antes de contratar.
           </p>
 
-          {/* Billing Cycle Switch */}
+          {/* Billing Cycle Switch (oculto enquanto o plano anual está desligado) */}
+          {ANNUAL_BILLING_ENABLED && (
           <div className="pt-4 flex justify-center">
             <div className="inline-flex p-1 bg-[#FDF2F6] rounded-xl border border-[#F2DCE4]">
               <button
@@ -75,6 +76,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
               </button>
             </div>
           </div>
+          )}
         </motion.div>
 
         {/* MOBILE VIEW (< lg) */}

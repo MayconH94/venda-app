@@ -34,7 +34,7 @@ const FAQS = [
   {
     question: 'Posso ver o sistema funcionando antes de contratar?',
     answer:
-      'Sim. Chame no WhatsApp e eu mostro a demonstração ao vivo, com a sua cor e a sua logo. Depois, se gostar, você escolhe a cobrança mensal ou anual. Não existe fidelidade nem multa — você pode cancelar quando quiser.',
+      'Sim. Chame no WhatsApp e eu mostro a demonstração ao vivo, com a sua cor e a sua logo. Depois, se gostar, você assina no plano mensal. Não existe fidelidade nem multa — você pode cancelar quando quiser.',
   },
 ];
 

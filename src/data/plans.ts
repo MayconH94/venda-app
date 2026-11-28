@@ -1,5 +1,9 @@
 import { SubscriptionPlan } from '../types';
 
+// Plano anual desligado por enquanto: o foco é assinatura mensal (SaaS).
+// Para reativar, troque para true.
+export const ANNUAL_BILLING_ENABLED = false;
+
 export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   {
     id: 'solo',

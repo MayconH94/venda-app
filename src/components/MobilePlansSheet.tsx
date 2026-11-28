@@ -3,7 +3,7 @@ import { useModal } from '../lib/useModal';
 import { X, Check, Crown, ArrowRight, Gem } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SubscriptionPlan } from '../types';
-import { SUBSCRIPTION_PLANS } from '../data/plans';
+import { SUBSCRIPTION_PLANS, ANNUAL_BILLING_ENABLED } from '../data/plans';
 import { BRAND } from '../config/brand';
 
 interface MobilePlansSheetProps {
@@ -19,7 +19,7 @@ export const MobilePlansSheet: React.FC<MobilePlansSheetProps> = ({
   onSelectPlan,
   onScrollToFullTable,
 }) => {
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('annual');
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
   const [activePlanId, setActivePlanId] = useState<string>('pro');
   const sheetRef = useRef<HTMLDivElement>(null);
   useModal(sheetRef, isOpen, onClose);
@@ -91,6 +91,7 @@ export const MobilePlansSheet: React.FC<MobilePlansSheetProps> = ({
 
             {/* Billing Cycle Switch */}
             <div className="px-5 pt-3 pb-2 bg-[#FFF9FB] space-y-2.5">
+              {ANNUAL_BILLING_ENABLED && (
               <div className="flex p-1 bg-[#F7E8EE] rounded-xl border border-[#F2DCE4]">
                 <button
                   type="button"
@@ -120,6 +121,7 @@ export const MobilePlansSheet: React.FC<MobilePlansSheetProps> = ({
                   </span>
                 </button>
               </div>
+              )}
 
               {/* Plan Switcher Tabs */}
               <div className="grid grid-cols-3 gap-1.5">
